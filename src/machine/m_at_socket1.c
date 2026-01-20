@@ -223,7 +223,7 @@ machine_at_mvi486_init(const machine_t *model)
 
     device_add_params(machine_get_kbc_device(machine), (void *) model->kbc_params);
 
-    device_add(&ide_vlb_device);
+    device_add(&ide_isa_device);
     device_add_params(&pc873xx_device, (void *) (PCX73XX_IDE_PRI | PCX730X_398));
 
     return ret;
