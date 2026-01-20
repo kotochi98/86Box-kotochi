@@ -299,8 +299,22 @@ const device_t opti493_device = {
     .config        = NULL
 };
 
-const device_t opti495slc_device = {
+const device_t opti495_device = {
     .name          = "OPTi 82C495",
+    .internal_name = "opti495",
+    .flags         = 0,
+    .local         = OPTI495,
+    .init          = opti495_init,
+    .close         = opti495_close,
+    .reset         = NULL,
+    .available     = NULL,
+    .speed_changed = NULL,
+    .force_redraw  = NULL,
+    .config        = NULL
+};
+
+const device_t opti495slc_device = {
+    .name          = "OPTi 82C495SLC",
     .internal_name = "opti495slc",
     .flags         = 0,
     .local         = OPTI495SLC,

@@ -121,6 +121,90 @@ machine_at_svc486wb_init(const machine_t *model)
     return ret;
 }
 
+/* OPTi 495 */
+static const device_config_t classics_config[] = {
+    // clang-format off
+    {
+        .name           = "bios",
+        .description    = "BIOS Version",
+        .type           = CONFIG_BIOS,
+        .default_string = "classics",
+        .default_int    = 0,
+        .file_filter    = NULL,
+        .spinner        = { 0 },
+        .selection      = { { 0 } },
+        .bios           = {
+            {
+                .name          = "PhoenixBIOS A486 - Revision 1.00.09.W0",
+                .internal_name = "classics",
+                .bios_type     = BIOS_NORMAL,
+                .files_no      = 2,
+                .local         = 0,
+                .size          = 131072,
+                .files         = { "roms/machines/classics/1009_W0_.BIO", "roms/machines/classics/1009_W0_.BI1", "" }
+            },
+            {
+                .name          = "PhoenixBIOS A486 - Revision 1.00.08.W0",
+                .internal_name = "classics08",
+                .bios_type     = BIOS_NORMAL,
+                .files_no      = 2,
+                .local         = 0,
+                .size          = 131072,
+                .files         = { "roms/machines/classics/1008_W0_.BIO", "roms/machines/classics/1008_W0_.BI1", "" }
+            },
+            { .files_no = 0 }
+        }
+    },
+    { .name = "", .description = "", .type = CONFIG_END }
+    // clang-format on
+};
+
+const device_t classics_device = {
+    .name          = "Intel Classic S Series",
+    .internal_name = "classics_device",
+    .flags         = 0,
+    .local         = 0,
+    .init          = NULL,
+    .close         = NULL,
+    .reset         = NULL,
+    .available     = NULL,
+    .speed_changed = NULL,
+    .force_redraw  = NULL,
+    .config        = classics_config
+};
+
+int
+machine_at_classics_init(const machine_t *model)
+{
+    int         ret = 0;
+    const char *fn;
+    const char *fn2;
+
+    /* No ROMs available */
+    if (!device_available(model->device))
+        return ret;
+
+    device_context(model->device);
+    fn  = device_get_bios_file(machine_get_device(machine), device_get_config_bios("bios"), 0);
+    fn2 = device_get_bios_file(machine_get_device(machine), device_get_config_bios("bios"), 1);
+    ret = bios_load_linear_combined(fn, fn2, 0x20000, 128);
+    device_context_restore();
+
+    machine_at_common_init(model);
+
+    device_add(&opti495_device);
+
+    device_add_params(&pc87310_device, (void *) (PC87310_ALI));
+
+    /* No clue what the KBC is */
+    machine_force_ps2(1);
+    device_add_params(machine_get_kbc_device(machine), (void *) model->kbc_params);
+
+    device_add(&intel_flash_bxt_device);
+
+    return ret;
+}
+
 /* OPTi 498 */
 int
 machine_at_mvi486_init(const machine_t *model)
@@ -139,7 +223,7 @@ machine_at_mvi486_init(const machine_t *model)
 
     device_add_params(machine_get_kbc_device(machine), (void *) model->kbc_params);
 
-    device_add(&ide_isa_device);
+    device_add(&ide_vlb_device);
     device_add_params(&pc873xx_device, (void *) (PCX73XX_IDE_PRI | PCX730X_398));
 
     return ret;

@@ -257,6 +257,7 @@ enum {
     MACHINE_CHIPSET_OPTI_391,
     MACHINE_CHIPSET_OPTI_481,
     MACHINE_CHIPSET_OPTI_493,
+    MACHINE_CHIPSET_OPTI_495,
     MACHINE_CHIPSET_OPTI_495SLC,
     MACHINE_CHIPSET_OPTI_495SX,
     MACHINE_CHIPSET_OPTI_496,
@@ -676,6 +677,12 @@ extern int             machine_at_ga486l_init(const machine_t *);
 /* OPTi 493 */
 extern int             machine_at_svc486wb_init(const machine_t *);
 
+/* OPTi 495 */
+#ifdef EMU_DEVICE_H
+extern const device_t  classics_device;
+#endif
+extern int             machine_at_classics_init(const machine_t *);
+
 /* OPTi 498 */
 extern int             machine_at_mvi486_init(const machine_t *);
 
@@ -723,6 +730,12 @@ extern int             machine_at_pci400ca_init(const machine_t *);
 
 /* IMS 8848 */
 extern int             machine_at_g486ip_init(const machine_t *);
+
+/* OPTi 495 */
+#ifdef EMU_DEVICE_H
+extern const device_t  classice_device;
+#endif
+extern int             machine_at_classice_init(const machine_t *);
 
 /* OPTi 499 */
 extern int             machine_at_cobalt_init(const machine_t *);
