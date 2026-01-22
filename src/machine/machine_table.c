@@ -8272,7 +8272,7 @@ const machine_t machines[] = {
         .snd_device               = NULL,
         .net_device               = NULL
     },
-    /* No clue what KBC this uses */
+    /* Seems to have an AMI 'H' KBC (AMIKEY-2) */
     {
         .name              = "[OPTi 495] Intel Classic E Series",
         .internal_name     = "classice",
@@ -8304,8 +8304,8 @@ const machine_t machines[] = {
         .jumpered_ecp_dma         = 0,
         .default_jumpered_ecp_dma = -1,
         .kbc_device               = &kbc_at_device,
-        .kbc_params               = KBC_VEN_PHOENIX | 0x00012900, /* Guess. */
-        .kbc_p1                   = 0x00000ce0,
+        .kbc_params               = KBC_VEN_AMI | 0x00004800,
+        .kbc_p1                   = 0x000004f0,
         .gpio                     = 0xffffffff,
         .gpio_acpi                = 0xffffffff,
         .device                   = &classice_device,

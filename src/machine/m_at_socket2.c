@@ -290,12 +290,9 @@ machine_at_classice_init(const machine_t *model)
     machine_at_common_init(model);
 
     device_add(&opti495_device);
-
     device_add(&ide_isa_device);
     device_add_params(&pc873xx_device, (void *) (PCX73XX_IDE_PRI | PCX730X_398));
 
-    /* No clue what the KBC is */
-    machine_force_ps2(1);
     device_add_params(machine_get_kbc_device(machine), (void *) model->kbc_params);
 
     device_add(&intel_flash_bxt_device);
