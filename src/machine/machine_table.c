@@ -18988,30 +18988,30 @@ const machine_t machines[] = {
     /* Has a SM(S)C FDC37C67x Super I/O chip with on-chip KBC with Phoenix or
        AMIKey-2 KBC firmware. */
     {
-        .name              = "[i440BX] Fujitsu ErgoPro x365/565",
-        .internal_name     = "ergox365",
+        .name              = "[i440BX] Fujitsu ErgoPro xD/xS Series",
+        .internal_name     = "ergoxd",
         .type              = MACHINE_TYPE_SLOT1,
         .chipset           = MACHINE_CHIPSET_INTEL_440LX,
-        .init              = machine_at_ergox365_init,
+        .init              = machine_at_ergoxd_init,
         .p1_handler        = machine_generic_p1_handler,
         .gpio_handler      = NULL,
         .available_flag    = MACHINE_AVAILABLE,
         .gpio_acpi_handler = NULL,
         .cpu               = {
             .package     = CPU_PKG_SLOT1,
-            .block       = CPU_BLOCK_NONE,
+            .block       = CPU_BLOCK(CPU_PENTIUMPRO), /* Hangs during POST if a Pentium Pro is used */
             .min_bus     = 66666667,
-            .max_bus     = 66666667,
+            .max_bus     = 100000000,
             .min_voltage = 1800,
             .max_voltage = 3500,
             .min_multi   = 1.5,
             .max_multi   = 8.0
         },
-        .bus_flags = MACHINE_PS2_PCI | MACHINE_BUS_USB, /* Has internal video: ATi 3D Rage Pro Turbo AGP, network: Intel 82558-based, and sound: Crystal CX4235 */
+        .bus_flags = MACHINE_PS2_PCI | MACHINE_BUS_USB, /* Has internal video: ATi RAGE XL AGP, network: Intel 82558-based, and sound: Crystal CS4260 */
         .flags     = MACHINE_IDE_DUAL | MACHINE_APM | MACHINE_ACPI | MACHINE_USB,
         .ram       = {
             .min  = 8192,
-            .max  = 786432,
+            .max  = 524288,
             .step = 8192
         },
         .nvrmask                  = 255,
