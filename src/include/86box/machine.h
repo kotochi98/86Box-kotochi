@@ -1335,6 +1335,7 @@ extern int             machine_at_cubx_init(const machine_t *);
 
 /* i440ZX */
 extern int             machine_at_63a1_init(const machine_t *);
+extern int             machine_at_zx98cu_init(const machine_t *);
 
 /* SiS 600 */
 extern int             machine_at_7sbb_init(const machine_t *);
