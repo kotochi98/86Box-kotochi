@@ -103,16 +103,80 @@ machine_at_acerv62x_init(const machine_t *model)
     return ret;
 }
 
+static const device_config_t p6kdi_config[] = {
+    // clang-format off
+    {
+        .name           = "bios",
+        .description    = "BIOS Version",
+        .type           = CONFIG_BIOS,
+        .default_string = "p6kdi",
+        .default_int    = 0,
+        .file_filter    = NULL,
+        .spinner        = { 0 },
+        .selection      = { { 0 } },
+        .bios           = {
+            {
+                .name          = "AMIBIOS 6 (071595) - Revision 3.0",
+                .internal_name = "p6kdi",
+                .bios_type     = BIOS_NORMAL, 
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 131072,
+                .files         = { "roms/machines/p6kdi/P6KDI_~2.BIN", "" }
+            },
+            {
+                .name          = "AMIBIOS 6 (071595) - Revision 2.0Y",
+                .internal_name = "p6kdi20y",
+                .bios_type     = BIOS_NORMAL, 
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 131072,
+                .files         = { "roms/machines/p6kdi/p6kdi20y.rom", "" }
+            },
+            {
+                .name          = "AMIBIOS 6 (071595) - Revision 1.0Y",
+                .internal_name = "p6kdi10y",
+                .bios_type     = BIOS_NORMAL, 
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 131072,
+                .files         = { "roms/machines/p6kdi/p6kdi10y.rom", "" }
+            },
+            { .files_no = 0 }
+        },
+    },
+    { .name = "", .description = "", .type = CONFIG_END }
+    // clang-format on
+};
+
+const device_t p6kdi_device = {
+    .name          = "Advanced Integration Research (AIR) P6KDI",
+    .internal_name = "p6kdi_device",
+    .flags         = 0,
+    .local         = 0,
+    .init          = NULL,
+    .close         = NULL,
+    .reset         = NULL,
+    .available     = NULL,
+    .speed_changed = NULL,
+    .force_redraw  = NULL,
+    .config        = p6kdi_config
+};
+
 int
 machine_at_p6kdi_init(const machine_t *model)
 {
-    int ret;
+    int         ret = 0;
+    const char *fn;
 
-    ret = bios_load_linear("roms/machines/p6kdi/p6kdi20y.rom",
-                           0x000c0000, 262144, 0);
-
-    if (bios_only || !ret)
+    /* No ROMs available */
+    if (!device_available(model->device))
         return ret;
+
+    device_context(model->device);
+    fn  = device_get_bios_file(machine_get_device(machine), device_get_config_bios("bios"), 0);
+    ret = bios_load_linear(fn, 0x000c0000, 262144, 0);
+    device_context_restore();
 
     machine_at_common_init(model);
 
@@ -128,7 +192,7 @@ machine_at_p6kdi_init(const machine_t *model)
 
     device_add(&i440fx_device);
     device_add(&piix3_device);
-    device_add_params(&fdc37c93x_device, (void *) (FDC37XXX2 | FDC37C93X_NORMAL | FDC37C93X_NO_NVR));
+    device_add_params(&fdc37c93x_device, (void *) (FDC37XXX2 | FDC37C93X_NORMAL));
     device_add(&intel_flash_bxt_device);
 
     return ret;
