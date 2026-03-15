@@ -2277,6 +2277,92 @@ machine_at_sq578_init(const machine_t *model)
     return ret;
 }
 
+static const device_config_t p5stbr_config[] = {
+    // clang-format off
+    {
+        .name           = "bios",
+        .description    = "BIOS Version",
+        .type           = CONFIG_BIOS,
+        .default_string = "p5stbr",
+        .default_int    = 0,
+        .file_filter    = NULL,
+        .spinner        = { 0 },
+        .selection      = { { 0 } },
+        .bios           = {
+            {
+                .name          = "Award Modular BIOS v4.51PG - Revision 0.9",
+                .internal_name = "p5stbr",
+                .bios_type     = BIOS_NORMAL,
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 131072,
+                .files         = { "roms/machines/p5stbr/m28010.bin", "" }
+            },
+            {
+                .name          = "Award Modular BIOS v4.51PG - Revision 2.2 (by Unicore Software)",
+                .internal_name = "p5stbrus",
+                .bios_type     = BIOS_NORMAL,
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 131072,
+                .files         = { "roms/machines/p5stbr/2A5IIE1D.BIN", "" }
+            },
+            { .files_no = 0 }
+        }
+    },
+    { .name = "", .description = "", .type = CONFIG_END }
+    // clang-format on
+};
+
+const device_t p5stbr_device = {
+    .name          = "ECS P5ST-BR",
+    .internal_name = "p5stbr_device",
+    .flags         = 0,
+    .local         = 0,
+    .init          = NULL,
+    .close         = NULL,
+    .reset         = NULL,
+    .available     = NULL,
+    .speed_changed = NULL,
+    .force_redraw  = NULL,
+    .config        = p5stbr_config
+};
+
+int
+machine_at_p5stbr_init(const machine_t *model)
+{
+    int         ret = 0;
+    const char *fn;
+
+    /* No ROMs available */
+    if (!device_available(model->device))
+        return ret;
+
+    device_context(model->device);
+    fn  = device_get_bios_file(machine_get_device(machine), device_get_config_bios("bios"), 0);
+    ret = bios_load_linear(fn, 0x000e0000, 131072, 0);
+    device_context_restore();
+
+    machine_at_common_init(model);
+
+    /* For some reason, the PCI IRQ table reports four PCI slots, even though this board has
+       no PCI slots nor peripherals. I suspect it's a leftover from the BIOS of a different
+       board. Regardless, those unused slots are still registered here for consistency. */
+    pci_init(PCI_CONFIG_TYPE_1 | FLAG_TRC_CONTROLS_CPURST);
+    pci_register_slot(0x00, PCI_CARD_NORTHBRIDGE, 0, 0, 0, 0);
+    pci_register_slot(0x01, PCI_CARD_SOUTHBRIDGE, 0, 0, 0, 0);
+    pci_register_slot(0x09, PCI_CARD_NORMAL,      1, 2, 3, 4);
+    pci_register_slot(0x0A, PCI_CARD_NORMAL,      2, 3, 4, 1);
+    pci_register_slot(0x0B, PCI_CARD_NORMAL,      3, 4, 1, 2);
+    pci_register_slot(0x0C, PCI_CARD_NORMAL,      4, 1, 2, 3);
+
+    device_add(&sis_5581_device);
+    device_add_params(&w83977_device, (void *) (W83977TF | W83977_AMI | W83977_NO_NVR));
+    device_add(&sst_flash_29ee010_device);
+
+    return ret;
+}
+
 /* SiS 5591 */
 int
 machine_at_ms5172_init(const machine_t *model)
