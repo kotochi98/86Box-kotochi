@@ -431,9 +431,6 @@ machine_at_apas3_init(const machine_t *model)
     pci_register_slot(0x14, PCI_CARD_NORMAL,      4, 1, 2, 3);
     pci_register_slot(0x01, PCI_CARD_AGPBRIDGE,   1, 2, 3, 4);
 
-    if ((sound_card_current[0] == SOUND_INTERNAL) && machine_get_snd_device(machine)->available())
-        machine_snd = device_add(machine_get_snd_device(machine));
-
     device_add(&via_apro_device);
     device_add(&via_vt82c586b_device);
     device_add_params(&fdc37c669_device, (void *) 0);
