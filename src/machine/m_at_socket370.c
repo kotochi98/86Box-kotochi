@@ -73,6 +73,97 @@ machine_at_s370slm_init(const machine_t *model)
     return ret;
 }
 
+/* i440EX */
+static const device_config_t exb854s_config[] = {
+    // clang-format off
+    {
+        .name           = "bios",
+        .description    = "BIOS Version",
+        .type           = CONFIG_BIOS,
+        .default_string = "exb854s",
+        .default_int    = 0,
+        .file_filter    = NULL,
+        .spinner        = { 0 },
+        .selection      = { { 0 } },
+        .bios           = {
+            {
+                .name          = "Award Modular BIOS v4.51PG - Revision 81223 (1Mbit)",
+                .internal_name = "exb854s_1mbit",
+                .bios_type     = BIOS_NORMAL,
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 131072,
+                .files         = { "roms/machines/exb854s/1m1223ig.bin", "" }
+            },
+            {
+                .name          = "Award Modular BIOS v4.51PG - Revision 90112 (2Mbit)",
+                .internal_name = "exb854s",
+                .bios_type     = BIOS_NORMAL,
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 262144,
+                .files         = { "roms/machines/exb854s/2m0112ig.bin", "" }
+            },
+            { .files_no = 0 }
+        }
+    },
+    { .name = "", .description = "", .type = CONFIG_END }
+    // clang-format on
+};
+
+const device_t exb854s_device = {
+    .name          = "PCPartner EXB854S",
+    .internal_name = "exb854s_device",
+    .flags         = 0,
+    .local         = 0,
+    .init          = NULL,
+    .close         = NULL,
+    .reset         = NULL,
+    .available     = NULL,
+    .speed_changed = NULL,
+    .force_redraw  = NULL,
+    .config        = exb854s_config
+};
+
+int
+machine_at_exb854s_init(const machine_t *model)
+{
+    int         ret = 0;
+    const char *fn;
+
+    /* No ROMs available */
+    if (!device_available(model->device))
+        return ret;
+
+    device_context(model->device);
+    fn  = device_get_bios_file(machine_get_device(machine), device_get_config_bios("bios"), 0);
+    int size = device_get_bios_file_size(machine_get_device(machine), device_get_config_bios("bios"));
+    ret = bios_load_linear(fn, 0x00100000 - size, size, 0);
+    device_context_restore();
+
+    machine_at_common_init(model);
+
+    pci_init(PCI_CONFIG_TYPE_1);
+    pci_register_slot(0x00, PCI_CARD_NORTHBRIDGE, 0, 0, 0, 0);
+    pci_register_slot(0x07, PCI_CARD_SOUTHBRIDGE, 1, 2, 3, 4);
+    pci_register_slot(0x0F, PCI_CARD_NORMAL,      1, 2, 3, 4);
+    pci_register_slot(0x10, PCI_CARD_NORMAL,      2, 3, 4, 1);
+    pci_register_slot(0x13, PCI_CARD_NORMAL,      3, 4, 1, 2);
+    pci_register_slot(0x14, PCI_CARD_NORMAL,      4, 1, 2, 3);
+    pci_register_slot(0x01, PCI_CARD_AGPBRIDGE,   1, 2, 3, 4);
+
+    if ((sound_card_current[0] == SOUND_INTERNAL) && machine_get_snd_device(machine)->available())
+        machine_snd = device_add(machine_get_snd_device(machine));
+
+    device_add(&i440lx_device);
+    device_add(&piix4e_device);
+    device_add(&it8671f_device);
+    device_add((size > 131072) ? &sst_flash_39sf020_device /* assumed */ : &winbond_flash_w29c010_device /* assumed */);
+    spd_register(SPD_TYPE_SDRAM, 0x03, 256);
+
+    return ret;
+}
+
 /* i440BX */
 int
 machine_at_awo671r_init(const machine_t *model)
@@ -339,6 +430,9 @@ machine_at_apas3_init(const machine_t *model)
     pci_register_slot(0x13, PCI_CARD_NORMAL,      3, 4, 1, 2);
     pci_register_slot(0x14, PCI_CARD_NORMAL,      4, 1, 2, 3);
     pci_register_slot(0x01, PCI_CARD_AGPBRIDGE,   1, 2, 3, 4);
+
+    if ((sound_card_current[0] == SOUND_INTERNAL) && machine_get_snd_device(machine)->available())
+        machine_snd = device_add(machine_get_snd_device(machine));
 
     device_add(&via_apro_device);
     device_add(&via_vt82c586b_device);
