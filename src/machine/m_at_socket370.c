@@ -155,7 +155,7 @@ machine_at_exb854s_init(const machine_t *model)
     if ((sound_card_current[0] == SOUND_INTERNAL) && machine_get_snd_device(machine)->available())
         machine_snd = device_add(machine_get_snd_device(machine));
 
-    device_add(&i440lx_device);
+    device_add(&i440ex_device);
     device_add(&piix4e_device);
     device_add(&it8671f_device);
     device_add((size > 131072) ? &sst_flash_39sf020_device /* assumed */ : &winbond_flash_w29c010_device /* assumed */);
