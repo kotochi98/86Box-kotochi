@@ -628,6 +628,109 @@ machine_at_ma30d_init(const machine_t *model)
 }
 
 /* i440EX */
+static const device_config_t in440exd_config[] = {
+    // clang-format off
+    {
+        .name           = "bios",
+        .description    = "BIOS Version",
+        .type           = CONFIG_BIOS,
+        .default_string = "in440exd",
+        .default_int    = 0,
+        .file_filter    = NULL,
+        .spinner        = { 0 },
+        .selection      = { { 0 } },
+        .bios           = {
+            {
+                .name          = "Award Modular BIOS v4.51PG - Revision 1.00",
+                .internal_name = "in440exd_100",
+                .bios_type     = BIOS_NORMAL,
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 262144,
+                .files         = { "roms/machines/in440exd/852100.bin", "" }
+            },
+            {
+                .name          = "Award Modular BIOS v4.51PG - Revision 1.01",
+                .internal_name = "in440exd_101",
+                .bios_type     = BIOS_NORMAL,
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 262144,
+                .files         = { "roms/machines/in440exd/852101.bin", "" }
+            },
+            {
+                .name          = "Award Modular BIOS v4.51PG - Revision 1.01 (CompUSA PC American Pro)",
+                .internal_name = "in440exd_compusa",
+                .bios_type     = BIOS_NORMAL,
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 262144,
+                .files         = { "roms/machines/in440exd/compusa.bin", "" }
+            },
+            {
+                .name          = "Award Modular BIOS v4.51PG - Revision 1.02",
+                .internal_name = "in440exd",
+                .bios_type     = BIOS_NORMAL,
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 262144,
+                .files         = { "roms/machines/in440exd/852102.bin", "" }
+            },
+            { .files_no = 0 }
+        }
+    },
+    { .name = "", .description = "", .type = CONFIG_END }
+    // clang-format on
+};
+
+const device_t in440exd_device = {
+    .name          = "BCM IN440EX-D",
+    .internal_name = "in440exd_device",
+    .flags         = 0,
+    .local         = 0,
+    .init          = NULL,
+    .close         = NULL,
+    .reset         = NULL,
+    .available     = NULL,
+    .speed_changed = NULL,
+    .force_redraw  = NULL,
+    .config        = in440exd_config
+};
+
+int
+machine_at_in440exd_init(const machine_t *model)
+{
+    int         ret = 0;
+    const char *fn;
+
+    /* No ROMs available */
+    if (!device_available(model->device))
+        return ret;
+
+    device_context(model->device);
+    fn  = device_get_bios_file(machine_get_device(machine), device_get_config_bios("bios"), 0);
+    ret = bios_load_linear(fn, 0x000c0000, 262144, 0);
+    device_context_restore();
+
+    machine_at_common_init(model);
+
+    pci_init(PCI_CONFIG_TYPE_1);
+    pci_register_slot(0x00, PCI_CARD_NORTHBRIDGE, 0, 0, 0, 0);
+    pci_register_slot(0x07, PCI_CARD_SOUTHBRIDGE, 0, 0, 0, 4);
+    pci_register_slot(0x0D, PCI_CARD_VIDEO,       3, 4, 1, 2); /* assumed */
+    pci_register_slot(0x11, PCI_CARD_NORMAL,      2, 3, 4, 1);
+    pci_register_slot(0x13, PCI_CARD_NORMAL,      1, 2, 3, 4);
+    pci_register_slot(0x01, PCI_CARD_AGPBRIDGE,   1, 2, 3, 4);
+
+    device_add(&i440ex_device);
+    device_add(&piix4_device);
+    device_add_params(&w83977_device, (void *) (W83977TF | W83977_AMI | W83977_NO_NVR));
+    device_add(&intel_flash_bxt_device); /* assumed */
+    spd_register(SPD_TYPE_SDRAM, 0x03, 256);
+
+    return ret;
+}
+
 int
 machine_at_brio83xx_init(const machine_t *model)
 {
