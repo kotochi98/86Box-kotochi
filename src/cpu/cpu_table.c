@@ -7595,7 +7595,7 @@ const cpu_family_t cpu_families[] = {
         }
     },
     {
-        .package       = CPU_PKG_SOCKET370,
+        .package       = CPU_PKG_PPGA370,
         .manufacturer  = "Intel",
         .name          = "Celeron (Mendocino)",
         .internal_name = "celeron_mendocino",
@@ -7859,7 +7859,7 @@ const cpu_family_t cpu_families[] = {
         }
     },
     {
-        .package       = CPU_PKG_SOCKET370,
+        .package       = CPU_PKG_FCPGA370,
         .manufacturer  = "VIA",
         .name          = "Cyrix III (Samuel)",
         .internal_name = "c3_samuel",

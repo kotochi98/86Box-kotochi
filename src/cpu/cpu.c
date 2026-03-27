@@ -377,7 +377,11 @@ cpu_is_eligible(const cpu_family_t *cpu_family, int cpu, int machine)
     if (packages & CPU_PKG_SOCKET3)
         packages |= CPU_PKG_SOCKET1;
     else if (packages & CPU_PKG_SLOT1)
-        packages |= CPU_PKG_SOCKET370 | CPU_PKG_SOCKET8;
+        packages |= CPU_PKG_PPGA370 | CPU_PKG_FCPGA370 | CPU_PKG_FCPGA370_TUALATIN | CPU_PKG_SOCKET8;
+    else if (packages & CPU_PKG_FCPGA370)
+        packages |= CPU_PKG_PPGA370;
+    else if (packages & CPU_PKG_FCPGA370_TUALATIN)
+        packages |= CPU_PKG_FCPGA370;
 
     /* Package type. */
     if (!(cpu_family->package & packages))
@@ -3225,7 +3229,7 @@ pentium_invalid_rdmsr:
 
                     if (cpu_f->package == CPU_PKG_SLOT2)
                         EDX |= (1 << 19);
-                    else if (cpu_f->package == CPU_PKG_SOCKET370)
+                    else if (cpu_f->package == CPU_PKG_PPGA370 | CPU_PKG_FCPGA370 | CPU_PKG_FCPGA370_TUALATIN)
                         EDX |= (1 << 20);
                     break;
                 /* Unknown */
