@@ -1340,6 +1340,12 @@ extern int             machine_at_s2dge_init(const machine_t *);
 /* i440LX */
 extern int             machine_at_s370slm_init(const machine_t *);
 
+/* i440EX */
+#ifdef EMU_DEVICE_H
+extern const device_t  exb854s_device;
+#endif
+extern int             machine_at_exb854s_init(const machine_t *);
+
 /* i440BX */
 extern int             machine_at_awo671r_init(const machine_t *);
 extern int             machine_at_ambx133_init(const machine_t *);

@@ -15262,7 +15262,7 @@ const machine_t machines[] = {
     },
     /* Has a VIA VT82C42N KBC. */
     {
-        .name              = "[i430FX] PC Partner MB500N",
+        .name              = "[i430FX] PCPartner MB500N",
         .internal_name     = "mb500n",
         .type              = MACHINE_TYPE_SOCKET7_3V,
         .chipset           = MACHINE_CHIPSET_INTEL_430FX,
@@ -17247,7 +17247,7 @@ const machine_t machines[] = {
     /* This has the AMIKey 'H' firmware, possibly AMIKey-2. Photos show it with a BestKey, so it
        likely clones the behavior of AMIKey 'H'. */
     {
-        .name              = "[i430VX] PC Partner MB520N",
+        .name              = "[i430VX] PCPartner MB520N",
         .internal_name     = "mb520n",
         .type              = MACHINE_TYPE_SOCKET7,
         .chipset           = MACHINE_CHIPSET_INTEL_430VX,
@@ -17838,7 +17838,7 @@ const machine_t machines[] = {
     /* The BIOS sends KBC command BB and expects it to output a byte, which is AMI KBC behavior.
        A picture shows a VIA VT82C42N KBC though, so it could be a case of that KBC with AMI firmware. */
     {
-        .name              = "[i430TX] PC Partner MB540N",
+        .name              = "[i430TX] PCPartner MB540N",
         .internal_name     = "mb540n",
         .type              = MACHINE_TYPE_SOCKET7,
         .chipset           = MACHINE_CHIPSET_INTEL_430TX,
@@ -18415,7 +18415,7 @@ const machine_t machines[] = {
     /* Has the VIA VT82C586B southbridge with on-chip KBC identical to the VIA
        VT82C42N. */
     {
-        .name              = "[VIA VP3] PC Partner VIA809DS",
+        .name              = "[VIA VP3] PCPartner VIA809DS",
         .internal_name     = "via809ds",
         .type              = MACHINE_TYPE_SOCKET7,
         .chipset           = MACHINE_CHIPSET_VIA_APOLLO_VP3,
@@ -19572,7 +19572,7 @@ const machine_t machines[] = {
     },
     /* Has a VIA VT82C42N KBC. */
     {
-        .name              = "[i440FX] PC Partner MB600N",
+        .name              = "[i440FX] PCPartner MB600N",
         .internal_name     = "mb600n",
         .type              = MACHINE_TYPE_SOCKET8,
         .chipset           = MACHINE_CHIPSET_INTEL_440FX,
@@ -21667,6 +21667,56 @@ const machine_t machines[] = {
         .net_device               = NULL
     },
 
+    /* 440EX */
+    /* Has an ITE IT8671F Super I/O chip with on-chip KBC with AMIKey-2 KBC
+       firmware. */
+    {
+        .name              = "[i440EX] PCPartner EXB854S",
+        .internal_name     = "exb854s",
+        .type              = MACHINE_TYPE_SOCKET370,
+        .chipset           = MACHINE_CHIPSET_INTEL_440EX,
+        .init              = machine_at_exb854s_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_PPGA370,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 50000000,
+            .max_bus     = 83333333,
+            .min_voltage = 1800,
+            .max_voltage = 3500,
+            .min_multi   = 1.5,
+            .max_multi   = 8.0
+        },
+        .bus_flags = MACHINE_PS2_AGP | MACHINE_BUS_USB,
+        .flags     = MACHINE_IDE_DUAL | MACHINE_SOUND | MACHINE_APM | MACHINE_ACPI | MACHINE_USB,
+        .ram       = {
+            .min  = 8192,
+            .max  = 524288,
+            .step = 8192
+        },
+        .nvrmask                  = 255,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = NULL,
+        .kbc_params               = 0x00000000,
+        .nvr_device               = NULL,
+        .nvr_params               = 0x00000000,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x00000cf0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = &exb854s_device,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = &sb_vibra16xv_onboard_device,
+        .net_device               = NULL
+    },
+
     /* 440BX */
     /* Has a Winbond W83977EF Super I/O chip with on-chip KBC with AMIKey-2 KBC
        firmware. */
@@ -22016,7 +22066,7 @@ const machine_t machines[] = {
     /* Has the VIA VT82C586B southbridge with on-chip KBC identical to the VIA
        VT82C42N. */
     {
-        .name              = "[VIA Apollo Pro] PC Partner APAS3",
+        .name              = "[VIA Apollo Pro] PCPartner APAS3",
         .internal_name     = "apas3",
         .type              = MACHINE_TYPE_SOCKET370,
         .chipset           = MACHINE_CHIPSET_VIA_APOLLO_PRO,
@@ -22036,7 +22086,7 @@ const machine_t machines[] = {
             .max_multi   = 8.0
         },
         .bus_flags = MACHINE_PS2_AGP | MACHINE_BUS_USB,
-        .flags     = MACHINE_IDE_DUAL | MACHINE_APM | MACHINE_ACPI | MACHINE_USB, /* Machine has internal video: Creative Vibra 16XV */
+        .flags     = MACHINE_IDE_DUAL | MACHINE_APM | MACHINE_ACPI | MACHINE_USB,
         .ram       = {
             .min  = 8192,
             .max  = 786432,
