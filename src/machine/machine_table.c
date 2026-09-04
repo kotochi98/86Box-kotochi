@@ -96,11 +96,11 @@ const machine_filter_t machine_chipsets[] = {
     { "C&T 82C235 SCAT",            MACHINE_CHIPSET_SCAT                },
     { "C&T 82C236 SCATsx",          MACHINE_CHIPSET_SCAT_SX             },
     { "C&T CS8221 NEAT",            MACHINE_CHIPSET_NEAT                },
-    { "C&T CS8281 NEATsx",          MACHINE_CHIPSET_NEAT_SX             },
+    { "C&T CS8281 NEATsx",          MACHINE_CHIPSET_NEATSX             },
     { "C&T CS4031",                 MACHINE_CHIPSET_CT_CS4031           },
     { "Contaq 82C596",              MACHINE_CHIPSET_CONTAQ_82C596       },
     { "Contaq 82C597",              MACHINE_CHIPSET_CONTAQ_82C597       },
-    { "IMS 8848",                   MACHINE_CHIPSET_IMS_8848            },
+    { "IMS 8848",                   MACHINE_CHIPSET_IMS8848            },
     { "Intel 82335",                MACHINE_CHIPSET_INTEL_82335         },
     { "Intel 420TX",                MACHINE_CHIPSET_INTEL_420TX         },
     { "Intel 420ZX",                MACHINE_CHIPSET_INTEL_420ZX         },
@@ -153,7 +153,7 @@ const machine_filter_t machine_chipsets[] = {
     { "STPC Consumer-II",           MACHINE_CHIPSET_STPC_CONSUMER_II    },
     { "STPC Elite",                 MACHINE_CHIPSET_STPC_ELITE          },
     { "STPC Atlas",                 MACHINE_CHIPSET_STPC_ATLAS          },
-    { "Symphony SL82C460 Haydn II", MACHINE_CHIPSET_SYMPHONY_SL82C460   },
+    { "Symphony SL82C460 Haydn II", MACHINE_CHIPSET_SYMPHONY_HAYDN_II   },
     { "UMC UM82C480",               MACHINE_CHIPSET_UMC_UM82C480        },
     { "UMC UM82C491",               MACHINE_CHIPSET_UMC_UM82C491        },
     { "UMC UM8881",                 MACHINE_CHIPSET_UMC_UM8881          },
@@ -201,7 +201,7 @@ const machine_t machines[] = {
     // clang-format off
     /* 8088 Machines */
     {
-        .name              = "[8088] IBM PC (1981)",
+        .name              = "[ISA] IBM PC (1981)",
         .internal_name     = "ibmpc",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -248,7 +248,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] IBM PC (1982)",
+        .name              = "[ISA] IBM PC (1982)",
         .internal_name     = "ibmpc82",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -295,7 +295,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] IBM PCjr",
+        .name              = "[ISA] IBM PCjr",
         .internal_name     = "ibmpcjr",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -342,7 +342,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] IBM XT (1982)",
+        .name              = "[ISA] IBM XT (1982)",
         .internal_name     = "ibmxt",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -393,7 +393,7 @@ const machine_t machines[] = {
        the planar video switches must read as neither MDA nor CGA -- the card
        reports VIDEO_FLAG_TYPE_SPECIAL to arrange that. */
     {
-        .name              = "[8088] IBM 3270 PC",
+        .name              = "[ISA] IBM 3270 PC",
         .internal_name     = "ibm3270pc",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -440,7 +440,7 @@ const machine_t machines[] = {
         .aliases                  = { "IBM 5271", "" }
     },
     {
-        .name              = "[8088] IBM XT (1986)",
+        .name              = "[ISA] IBM XT (1986)",
         .internal_name     = "ibmxt86",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -487,7 +487,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] American XT Computer",
+        .name              = "[ISA] American XT Computer",
         .internal_name     = "americxt",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -534,7 +534,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] AMI XT clone",
+        .name              = "[ISA] AMI XT clone",
         .internal_name     = "amixt",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -581,7 +581,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Atari PC 3",
+        .name              = "[ISA] Atari PC 3",
         .internal_name     = "ataripc3",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -628,7 +628,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Bondwell BW230",
+        .name              = "[ISA] Bondwell BW230",
         .internal_name     = "bw230",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -675,7 +675,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] CDP MPC-1600",
+        .name              = "[ISA] CDP MPC-1600",
         .internal_name     = "mpc1600",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -722,7 +722,7 @@ const machine_t machines[] = {
         .aliases                  = { "Columbia Data Products MPC-1600", "" }
     },
     {
-        .name              = "[8088] Compaq Portable",
+        .name              = "[ISA] Compaq Portable",
         .internal_name     = "portable",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -769,7 +769,7 @@ const machine_t machines[] = {
         .aliases                  = { "Compaq Portable Plus", "" }
     },
     {
-        .name              = "[8088] DTK PIM-TB10-Z",
+        .name              = "[ISA] DTK PIM-TB10-Z",
         .internal_name     = "dtk",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -816,7 +816,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Eagle PC Spirit",
+        .name              = "[ISA] Eagle PC Spirit",
         .internal_name     = "pcspirit",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -863,7 +863,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Generic XT clone",
+        .name              = "[ISA] Generic XT clone",
         .internal_name     = "genxt",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -910,7 +910,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] GLaBIOS",
+        .name              = "[ISA] GLaBIOS",
         .internal_name     = "glabios",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -957,7 +957,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Hyosung Topstar 88T",
+        .name              = "[ISA] Hyosung Topstar 88T",
         .internal_name     = "top88",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1004,7 +1004,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Hyundai SUPER-16T",
+        .name              = "[ISA] Hyundai SUPER-16T",
         .internal_name     = "super16t",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1051,7 +1051,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Hyundai SUPER-16TE",
+        .name              = "[ISA] Hyundai SUPER-16TE",
         .internal_name     = "super16te",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1098,7 +1098,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Juko ST",
+        .name              = "[ISA] Juko ST",
         .internal_name     = "jukopc",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1145,7 +1145,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Kaypro PC",
+        .name              = "[ISA] Kaypro PC",
         .internal_name     = "kaypropc",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1192,7 +1192,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Multitech PC-500",
+        .name              = "[ISA] Multitech PC-500",
         .internal_name     = "pc500",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1239,7 +1239,7 @@ const machine_t machines[] = {
         .aliases                  = { "Franklin PC 8000", "" }
     },
     {
-        .name              = "[8088] Multitech PC-500+",
+        .name              = "[ISA] Multitech PC-500+",
         .internal_name     = "pc500plus",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1286,7 +1286,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Multitech PC-700",
+        .name              = "[ISA] Multitech PC-700",
         .internal_name     = "pc700",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1333,7 +1333,7 @@ const machine_t machines[] = {
         .aliases                  = { "Siemens SICOMP PC 16 05", "" }
     },
     {
-        .name              = "[8088] NCR PC4i",
+        .name              = "[ISA] NCR PC4i",
         .internal_name     = "pc4i",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1380,7 +1380,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Olivetti M19",
+        .name              = "[ISA] Olivetti M19",
         .internal_name     = "m19",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -1427,7 +1427,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] OpenXT",
+        .name              = "[ISA] OpenXT",
         .internal_name     = "openxt",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1474,7 +1474,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Philips P3105/NMS9100",
+        .name              = "[ISA] Philips P3105/NMS9100",
         .internal_name     = "p3105",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1521,7 +1521,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Phoenix XT clone",
+        .name              = "[ISA] Phoenix XT clone",
         .internal_name     = "pxxt",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1568,7 +1568,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Pravetz 16",
+        .name              = "[ISA] Pravetz 16",
         .internal_name     = "pravetz16",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1615,7 +1615,7 @@ const machine_t machines[] = {
         .aliases                  = { "IMKO-4", "" }
     },
     {
-        .name              = "[8088] Pravetz-16ES",
+        .name              = "[ISA] Pravetz-16ES",
         .internal_name     = "mxl7t",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1662,7 +1662,7 @@ const machine_t machines[] = {
         .aliases                  = { "Micoms XL-7 Turbo", "" }
     },
     {
-        .name              = "[8088] Pravetz 16S",
+        .name              = "[ISA] Pravetz 16S",
         .internal_name     = "pravetz16s",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1709,7 +1709,7 @@ const machine_t machines[] = {
         .aliases                  = { "CPU12 Plus", "" }
     },
     {
-        .name              = "[8088] Samsung SPC-3000V",
+        .name              = "[ISA] Samsung SPC-3000V",
         .internal_name     = "pb8810",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1756,7 +1756,7 @@ const machine_t machines[] = {
         .aliases                  = { "Packard Bell PB500", "Packard Bell PB8810", "" }
     },
     {
-        .name              = "[8088] Sanyo SX-16",
+        .name              = "[ISA] Sanyo SX-16",
         .internal_name     = "sansx16",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1803,7 +1803,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Schneider EuroPC",
+        .name              = "[ISA] Schneider EuroPC",
         .internal_name     = "europc",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -1850,7 +1850,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Super PC",
+        .name              = "[ISA] Super PC",
         .internal_name     = "pcxt",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -1897,7 +1897,7 @@ const machine_t machines[] = {
         .aliases                  = { "Turbo XT", "" }
     },
     {
-        .name              = "[8088] Tandy 1000 SX",
+        .name              = "[ISA] Tandy 1000 SX",
         .internal_name     = "tandy1000sx",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -1944,7 +1944,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Tandy 1000 HX",
+        .name              = "[ISA] Tandy 1000 HX",
         .internal_name     = "tandy1000hx",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -1991,7 +1991,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Thomson TO16",
+        .name              = "[ISA] Thomson TO16",
         .internal_name     = "to16",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -2038,7 +2038,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Toshiba T1000",
+        .name              = "[ISA] Toshiba T1000",
         .internal_name     = "t1000",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -2085,7 +2085,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Vendex HeadStart Turbo 888-XT",
+        .name              = "[ISA] Vendex HeadStart Turbo 888-XT",
         .internal_name     = "vendex",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -2132,7 +2132,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] VTech Laser Turbo XT",
+        .name              = "[ISA] VTech Laser Turbo XT",
         .internal_name     = "ltxt",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -2180,7 +2180,7 @@ const machine_t machines[] = {
     },
     /* Has a standard PS/2 KBC (so, use IBM PS/2 Type 1). */
     {
-        .name              = "[8088] Xi8088",
+        .name              = "[ISA] Xi8088",
         .internal_name     = "xi8088",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -2226,7 +2226,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Z-NIX PC-1600",
+        .name              = "[ISA] Z-NIX PC-1600",
         .internal_name     = "znic",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -2273,7 +2273,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Zenith Data Systems Z-151",
+        .name              = "[ISA] Zenith Data Systems Z-151",
         .internal_name     = "zdsz151",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -2320,7 +2320,7 @@ const machine_t machines[] = {
         .aliases                  = { "Zenith Data Systems Z-152", "Zenith Data Systems Z-161", "" }
     },
     {
-        .name              = "[8088] Zenith Data Systems Z-159",
+        .name              = "[ISA] Zenith Data Systems Z-159",
         .internal_name     = "zdsz159",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -2367,7 +2367,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8088] Zenith Data Systems Z-184",
+        .name              = "[ISA] Zenith Data Systems Z-184",
         .internal_name     = "zdsupers",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -2414,7 +2414,7 @@ const machine_t machines[] = {
         .aliases                  = { "Zenith Data Systems SupersPort", "" }
     },
     {
-        .name              = "[GC100A] Philips P3120",
+        .name              = "[G-2 GC100A] Philips P3120",
         .internal_name     = "p3120",
         .type              = MACHINE_TYPE_8088,
         .chipset           = MACHINE_CHIPSET_GC100A,
@@ -2557,7 +2557,7 @@ const machine_t machines[] = {
 
     /* 8086 Machines */
     {
-        .name              = "[8086] Amstrad PC1512",
+        .name              = "[ISA] Amstrad PC1512",
         .internal_name     = "pc1512",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -2604,7 +2604,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8086] Amstrad PC1640",
+        .name              = "[ISA] Amstrad PC1640",
         .internal_name     = "pc1640",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -2651,7 +2651,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8086] Amstrad PC2086",
+        .name              = "[ISA] Amstrad PC2086",
         .internal_name     = "pc2086",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -2698,7 +2698,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8086] Amstrad PC3086",
+        .name              = "[ISA] Amstrad PC3086",
         .internal_name     = "pc3086",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -2745,7 +2745,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8086] Amstrad PC5086",
+        .name              = "[ISA] Amstrad PC5086",
         .internal_name     = "pc5086",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -2792,7 +2792,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8086] Amstrad PC20(0)",
+        .name              = "[ISA] Amstrad PC20(0)",
         .internal_name     = "pc200",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -2839,7 +2839,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8086] Amstrad PPC512/640",
+        .name              = "[ISA] Amstrad PPC512/640",
         .internal_name     = "ppc512",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -2886,7 +2886,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8086] Compaq Deskpro",
+        .name              = "[ISA] Compaq Deskpro",
         .internal_name     = "deskpro",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -2933,7 +2933,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8086] Epson Equity LT",
+        .name              = "[ISA] Epson Equity LT",
         .internal_name     = "elt",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -2980,7 +2980,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8086] IBM Multistation 5550",
+        .name              = "[ISA] IBM Multistation 5550",
         .internal_name     = "ibm5550",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -3028,7 +3028,7 @@ const machine_t machines[] = {
     },
     /* Type 8525-004, original 8 MHz 8086 color model with integrated MCGA. */
     {
-        .name              = "[8086] IBM PS/2 model 25 (color)",
+        .name              = "[ISA] IBM PS/2 model 25 (color)",
         .internal_name     = "ibmps2_m25",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -3076,7 +3076,7 @@ const machine_t machines[] = {
     },
     /* Type 8530-002/8530-021, original 8 MHz 8086 with integrated MCGA and an RTC. */
     {
-        .name              = "[8086] IBM PS/2 model 30",
+        .name              = "[ISA] IBM PS/2 model 30",
         .internal_name     = "ibmps2_m30",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -3123,7 +3123,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8086] Mazovia 1016",
+        .name              = "[ISA] Mazovia 1016",
         .internal_name     = "maz1016",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -3169,7 +3169,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8086] Olivetti M24",
+        .name              = "[ISA] Olivetti M24",
         .internal_name     = "m24",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -3217,7 +3217,7 @@ const machine_t machines[] = {
     },
     /* Has Olivetti KBC firmware. */
     {
-        .name              = "[8086] Olivetti M240",
+        .name              = "[ISA] Olivetti M240",
         .internal_name     = "m240",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -3264,7 +3264,7 @@ const machine_t machines[] = {
         .aliases                  = { "AT&T PC 6300 WGS", "" }
     },
     {
-        .name              = "[8086] Schetmash Iskra-3104",
+        .name              = "[ISA] Schetmash Iskra-3104",
         .internal_name     = "iskra3104",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -3311,7 +3311,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8086] Tandy 1000 SL/2",
+        .name              = "[ISA] Tandy 1000 SL/2",
         .internal_name     = "tandy1000sl2",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -3358,7 +3358,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8086] Toshiba T1200",
+        .name              = "[ISA] Toshiba T1200",
         .internal_name     = "t1200",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -3405,7 +3405,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8086] Victor V86P",
+        .name              = "[ISA] Victor V86P",
         .internal_name     = "v86p",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_PROPRIETARY,
@@ -3452,7 +3452,7 @@ const machine_t machines[] = {
         .aliases                  = { "" }
     },
     {
-        .name              = "[8086] VTech Laser XT3",
+        .name              = "[ISA] VTech Laser XT3",
         .internal_name     = "lxt3",
         .type              = MACHINE_TYPE_8086,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -4511,6 +4511,250 @@ const machine_t machines[] = {
         .net_device               = NULL,
         .aliases                  = { "" }
     },
+    /* Has Phoenix MultiKey/42 KBC firmware. */
+    {
+        .name              = "[C&T NEAT] Arche AMA-2010",
+        .internal_name     = "px286",
+        .type              = MACHINE_TYPE_286,
+        .chipset           = MACHINE_CHIPSET_NEAT,
+        .init              = machine_at_px286_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_286,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 12500000,
+            .max_bus     = 16000000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_AT,
+        .flags     = MACHINE_FLAGS_NONE,
+        .ram       = {
+            .min  = 256,
+            .max  = 8192,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        /* The version number is a guess - we have no probe of this machine's controller. */
+        .kbc_params               = KBC_VEN_PHOENIX | 0x00010500,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x000004f0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
+    /* Most likely has Chips & Technologies KBC firmware. */
+    {
+        .name              = "[C&T NEAT] Atari PC4",
+        .internal_name     = "ataripc4",
+        .type              = MACHINE_TYPE_286,
+        .chipset           = MACHINE_CHIPSET_NEAT,
+        .init              = machine_at_ataripc4_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_286,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 12500000,
+            .max_bus     = 16000000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_AT,
+        .flags     = MACHINE_FDC, /* Machine has video: Paradise PVGA1A */
+        .ram       = {
+            .min  = 256, /* POST misdetects memory when it's less than 1 MB,
+                            but otherwise such amounts work without issues */
+            .max  = 8192,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = KBC_VEN_CHIPS | 0x0000a600,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x000004f0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
+    /* This has an AMIKey-2, which is 'H'. */
+    {
+        .name              = "[C&T NEAT] DataExpert 286",
+        .internal_name     = "ami286",
+        .type              = MACHINE_TYPE_286,
+        .chipset           = MACHINE_CHIPSET_NEAT,
+        .init              = machine_at_neat_ami_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_286,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 0,
+            .max_bus     = 0,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_AT,
+        .flags     = MACHINE_FLAGS_NONE,
+        .ram       = {
+            .min  = 256, /* POST misdetects memory when it's less than 1 MB,
+                            but otherwise such amounts work without issues */
+            .max  = 8192,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = KBC_VEN_AMI | 0x00004800,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x000004f0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
+    /* Has NCR KBC firmware. */
+    {
+        .name              = "[C&T NEAT] NCR 3302",
+        .internal_name     = "3302",
+        .type              = MACHINE_TYPE_286,
+        .chipset           = MACHINE_CHIPSET_NEAT,
+        .init              = machine_at_3302_init,
+        .p1_handler        = machine_ncr_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_286,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 12500000,
+            .max_bus     = 12500000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_AT,
+        .flags     = MACHINE_IDE | MACHINE_VIDEO,
+        .ram       = {
+            .min  = 256,
+            .max  = 8192,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = KBC_VEN_NCR,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x000004df,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = &paradise_pvga1a_ncr3302_device,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
+    /* Has unknown keyboard controller. */
+    {
+        .name              = "[C&T NEAT] Nixdorf 8810 M30",
+        .internal_name     = "n8810m30",
+        .type              = MACHINE_TYPE_286,
+        .chipset           = MACHINE_CHIPSET_NEAT,
+        .init              = machine_at_n8810m30_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_286,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 10000000,
+            .max_bus     = 10000000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_AT,
+        .flags     = MACHINE_FLAGS_NONE, /* Machine has internal SCSI: Western Digital WD33C93AJM */
+        .ram       = {
+            .min  = 640,
+            .max  = 640, /* memory upgrades are only possible with proprietary 1 or 2 MB
+                            expansion cards, which can be emulated using the Generic PC/AT
+                            Memory Expansion card, with the start address set to 1024 */
+            .step = 640
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = 0x00000000,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x000004f0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
     /* No proper pictures of the KBC exist, though it seems to have the IBM AT KBC
        firmware. */
     {
@@ -4753,6 +4997,536 @@ const machine_t machines[] = {
         .net_device               = NULL,
         .aliases                  = { "" }
     },
+    /* Has unknown KBC firmware. */
+    {
+        .name              = "[C&T SCAT] Amstrad PC5286",
+        .internal_name     = "pc5286",
+        .type              = MACHINE_TYPE_286,
+        .chipset           = MACHINE_CHIPSET_SCAT,
+        .init              = machine_at_pc5286_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_286,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 16000000,
+            .max_bus     = 16000000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_AT | MACHINE_BUS_PS2,
+        .flags     = MACHINE_IDE,
+        .ram       = {
+            .min  = 1024, /* soldered amount(?) */
+            .max  = 4096,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = 0x00000000,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x000004f0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = &f82c710_device,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
+    /* Has Chips & Technologies KBC firmware. */
+    {
+        .name              = "[C&T SCAT] GW-286CT GEAR",
+        .internal_name     = "gw286ct",
+        .type              = MACHINE_TYPE_286,
+        .chipset           = MACHINE_CHIPSET_SCAT,
+        .init              = machine_at_gw286ct_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_286,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 20000000,
+            .max_bus     = 25000000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_AT,
+        .flags     = MACHINE_IDE,
+        .ram       = {
+            .min  = 512, /* crashes at POST code 00 with less */
+            .max  = 16384,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = KBC_VEN_CHIPS | 0x0000a600,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x000004f0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = &f82c710_device,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
+    /* Has IBM PS/2 Type 1 KBC firmware - that's actually a guess since we
+       do not currently have a picture of the motherboard.
+       In the code, we actually give it the AMI PS/2 controller. */
+    {
+        .name              = "[C&T SCAT] GoldStar GDC-212M",
+        .internal_name     = "gdc212m",
+        .type              = MACHINE_TYPE_286,
+        .chipset           = MACHINE_CHIPSET_SCAT,
+        .init              = machine_at_gdc212m_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_286,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 12500000,
+            .max_bus     = 12500000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_PS2,
+        .flags     = MACHINE_IDE,
+        .ram       = {
+            .min  = 512, /* gets stuck at POST code 86 with less */
+            .max  = 4096,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = KBC_VEN_AMI | 0x00004600,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x00000cf0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
+    /* Has a VIA VT82C42N KBC. */
+    {
+        .name              = "[C&T SCAT] Hyundai Solomon 286KP",
+        .internal_name     = "award286",
+        .type              = MACHINE_TYPE_286,
+        .chipset           = MACHINE_CHIPSET_SCAT,
+        .init              = machine_at_award286_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_286,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 12500000,
+            .max_bus     = 12500000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_AT,
+        .flags     = MACHINE_IDE,
+        .ram       = {
+            .min  = 640, /* misdetects the size and gets stuck during the memory test with less */
+            .max  = 8192,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = KBC_VEN_VIA | 0x00424600,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x000004f0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
+    /* Has a VIA VT82C42N KBC. */
+    {
+        .name              = "[C&T SCAT] Hyundai Super-286TR",
+        .internal_name     = "super286tr",
+        .type              = MACHINE_TYPE_286,
+        .chipset           = MACHINE_CHIPSET_SCAT,
+        .init              = machine_at_super286tr_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_286,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 12500000,
+            .max_bus     = 12500000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_AT,
+        .flags     = MACHINE_FLAGS_NONE,
+        .ram       = {
+            .min  = 640, /* misdetects the size and gets stuck during the memory test with less */
+            .max  = 8192,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = KBC_VEN_VIA | 0x00424600,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x000004f0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
+    {
+        .name              = "[C&T SCAT] ICL DRS M35/286",
+        .internal_name     = "drsm35286",
+        .type              = MACHINE_TYPE_286,
+        .chipset           = MACHINE_CHIPSET_SCAT,
+        .init              = machine_at_drsm35286_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_286,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 12500000,
+            .max_bus     = 12500000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_PS2,
+        .flags     = MACHINE_IDE | MACHINE_VIDEO, /* Machine has Super I/O: C&T F82C711 */
+        .ram       = {
+            .min  = 512, /* crashes at POST code 60 with less */
+            .max  = 5120,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = 0x00000000,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x000004f0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = &gd5401_onboard_device,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
+    /* Has IBM AT KBC firmware. */
+    {
+        .name              = "[C&T SCAT] Samsung Deskmaster 286/12",
+        .internal_name     = "deskmaster286",
+        .type              = MACHINE_TYPE_286,
+        .chipset           = MACHINE_CHIPSET_SCAT,
+        .init              = machine_at_deskmaster286_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_286,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 12500000,
+            .max_bus     = 12500000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_PS2,
+        .flags     = MACHINE_IDE, /* Has internal video: C&T VGA 411 */
+        .ram       = {
+            .min  = 512, /* crashes and bootloops during POST with less */
+            .max  = 8192,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = KBC_VEN_AMI | 0x00004600,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x00000cf0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
+    /* Has a Samsung (SEC) V1.4 KBC firmware. */
+    /* TODO: Do kbc_at.c logging to see if the BIOS sends any proprietary commands. */
+    {
+        .name              = "[C&T SCAT] Samsung SPC-4200P",
+        .internal_name     = "spc4200p",
+        .type              = MACHINE_TYPE_286,
+        .chipset           = MACHINE_CHIPSET_SCAT,
+        .init              = machine_at_spc4200p_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_286,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 12500000,
+            .max_bus     = 12500000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_PS2,
+        .flags     = MACHINE_IDE, /* Has internal video: C&T VGA 411 */
+        .ram       = {
+            .min  = 512, /* crashes and bootloops during POST with less */
+            .max  = 8192,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = KBC_VEN_AMI | 0x00004600,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x00000cf0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "Samsung SD620", "Samsung Aladdin 286", "" }
+    },
+    /* Most likely has a Samsung (SEC) V1.4 KBC firmware like the SPC-4200P above. */
+    {
+        .name              = "[C&T SCAT] Samsung SPC-4216P",
+        .internal_name     = "spc4216p",
+        .type              = MACHINE_TYPE_286,
+        .chipset           = MACHINE_CHIPSET_SCAT,
+        .init              = machine_at_spc4216p_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_286,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 12500000,
+            .max_bus     = 12500000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_PS2,
+        .flags     = MACHINE_FLAGS_NONE,
+        .ram       = {
+            .min  = 512, /* crashes and bootloops during POST with less */
+            .max  = 5120,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = KBC_VEN_AMI | 0x00004600,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x00000cf0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
+    /* Most likely has a Samsung (SEC) V1.4 KBC firmware like the SPC-4200P above. */
+    {
+        .name              = "[C&T SCAT] Samsung SPC-4620P",
+        .internal_name     = "spc4620p",
+        .type              = MACHINE_TYPE_286,
+        .chipset           = MACHINE_CHIPSET_SCAT,
+        .init              = machine_at_spc4620p_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_286,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 16000000,
+            .max_bus     = 16000000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_PS2,
+        .flags     = MACHINE_IDE | MACHINE_VIDEO,
+        .ram       = {
+            .min  = 512, /* crashes and bootloops during POST with less */
+            .max  = 8192,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = KBC_VEN_AMI | 0x00004600,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x00000cf0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = &ati28800k_spc4620p_device,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "Samsung Aladdin 286 Magic+", "" }
+    },
+    /* Has AMI '8' KBC firmware. */
+    {
+        .name              = "[C&T SCAT] Senor Science Co. SCAT-286-003",
+        .internal_name     = "senorscat286",
+        .type              = MACHINE_TYPE_286,
+        .chipset           = MACHINE_CHIPSET_SCAT,
+        .init              = machine_at_senor_scat286_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_286,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 12500000,
+            .max_bus     = 12500000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_AT,
+        .flags     = MACHINE_IDE,
+        .ram       = {
+            .min  = 512, /* gets stuck at POST code 10 with less */
+            .max  = 8192,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = KBC_VEN_AMI | 0x00003800,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x000004f0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
     /* Has Chips & Technologies KBC firmware. */
     {
         .name              = "[C&T PC/AT] Wells American A*Star",
@@ -4803,7 +5577,7 @@ const machine_t machines[] = {
     },
     /* Has Quadtel KBC firmware. */
     {
-        .name              = "[GC103] Quadtel 286 clone",
+        .name              = "[G-2 GC103] Quadtel 286 clone",
         .internal_name     = "quadt286",
         .type              = MACHINE_TYPE_286,
         .chipset           = MACHINE_CHIPSET_GC103,
@@ -4851,7 +5625,7 @@ const machine_t machines[] = {
     },
     /* Has AMI 'B' KBC firmware. */
     {
-        .name              = "[GC103] TriGem VULCAN-II",
+        .name              = "[G-2 GC103] TriGem VULCAN-II",
         .internal_name     = "tg286m",
         .type              = MACHINE_TYPE_286,
         .chipset           = MACHINE_CHIPSET_GC103,
@@ -4897,253 +5671,9 @@ const machine_t machines[] = {
         .net_device               = NULL,
         .aliases                  = { "TriGem TG-286M", "" }
     },
-    /* Has Phoenix MultiKey/42 KBC firmware. */
-    {
-        .name              = "[NEAT] Arche AMA-2010",
-        .internal_name     = "px286",
-        .type              = MACHINE_TYPE_286,
-        .chipset           = MACHINE_CHIPSET_NEAT,
-        .init              = machine_at_px286_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_286,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 12500000,
-            .max_bus     = 16000000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_AT,
-        .flags     = MACHINE_FLAGS_NONE,
-        .ram       = {
-            .min  = 256,
-            .max  = 8192,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        /* The version number is a guess - we have no probe of this machine's controller. */
-        .kbc_params               = KBC_VEN_PHOENIX | 0x00010500,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x000004f0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
-    /* Most likely has Chips & Technologies KBC firmware. */
-    {
-        .name              = "[NEAT] Atari PC4",
-        .internal_name     = "ataripc4",
-        .type              = MACHINE_TYPE_286,
-        .chipset           = MACHINE_CHIPSET_NEAT,
-        .init              = machine_at_ataripc4_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_286,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 12500000,
-            .max_bus     = 16000000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_AT,
-        .flags     = MACHINE_FDC, /* Machine has video: Paradise PVGA1A */
-        .ram       = {
-            .min  = 256, /* POST misdetects memory when it's less than 1 MB,
-                            but otherwise such amounts work without issues */
-            .max  = 8192,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = KBC_VEN_CHIPS | 0x0000a600,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x000004f0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
-    /* This has an AMIKey-2, which is 'H'. */
-    {
-        .name              = "[NEAT] DataExpert 286",
-        .internal_name     = "ami286",
-        .type              = MACHINE_TYPE_286,
-        .chipset           = MACHINE_CHIPSET_NEAT,
-        .init              = machine_at_neat_ami_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_286,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 0,
-            .max_bus     = 0,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_AT,
-        .flags     = MACHINE_FLAGS_NONE,
-        .ram       = {
-            .min  = 256, /* POST misdetects memory when it's less than 1 MB,
-                            but otherwise such amounts work without issues */
-            .max  = 8192,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = KBC_VEN_AMI | 0x00004800,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x000004f0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
-    /* Has NCR KBC firmware. */
-    {
-        .name              = "[NEAT] NCR 3302",
-        .internal_name     = "3302",
-        .type              = MACHINE_TYPE_286,
-        .chipset           = MACHINE_CHIPSET_NEAT,
-        .init              = machine_at_3302_init,
-        .p1_handler        = machine_ncr_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_286,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 12500000,
-            .max_bus     = 12500000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_AT,
-        .flags     = MACHINE_IDE | MACHINE_VIDEO,
-        .ram       = {
-            .min  = 256,
-            .max  = 8192,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = KBC_VEN_NCR,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x000004df,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = &paradise_pvga1a_ncr3302_device,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
-    /* Has unknown keyboard controller. */
-    {
-        .name              = "[NEAT] Nixdorf 8810 M30",
-        .internal_name     = "n8810m30",
-        .type              = MACHINE_TYPE_286,
-        .chipset           = MACHINE_CHIPSET_NEAT,
-        .init              = machine_at_n8810m30_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_286,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 10000000,
-            .max_bus     = 10000000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_AT,
-        .flags     = MACHINE_FLAGS_NONE, /* Machine has internal SCSI: Western Digital WD33C93AJM */
-        .ram       = {
-            .min  = 640,
-            .max  = 640, /* memory upgrades are only possible with proprietary 1 or 2 MB
-                            expansion cards, which can be emulated using the Generic PC/AT
-                            Memory Expansion card, with the start address set to 1024 */
-            .step = 640
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = 0x00000000,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x000004f0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
     /* Has the VLSI 82C113 with on-chip KBC. */
     {
-        .name              = "[SCAMP] Amstrad PC7286",
+        .name              = "[VLSI SCAMP] Amstrad PC7286",
         .internal_name     = "pc7286",
         .type              = MACHINE_TYPE_286,
         .chipset           = MACHINE_CHIPSET_VLSI_SCAMP,
@@ -5189,536 +5719,6 @@ const machine_t machines[] = {
         .snd_device               = NULL,
         .net_device               = NULL,
         .aliases                  = { "Amstrad VSC286E", "" }
-    },
-    /* Has unknown KBC firmware. */
-    {
-        .name              = "[SCAT] Amstrad PC5286",
-        .internal_name     = "pc5286",
-        .type              = MACHINE_TYPE_286,
-        .chipset           = MACHINE_CHIPSET_SCAT,
-        .init              = machine_at_pc5286_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_286,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 16000000,
-            .max_bus     = 16000000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_AT | MACHINE_BUS_PS2,
-        .flags     = MACHINE_IDE,
-        .ram       = {
-            .min  = 1024, /* soldered amount(?) */
-            .max  = 4096,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = 0x00000000,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x000004f0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = &f82c710_device,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
-    /* Has Chips & Technologies KBC firmware. */
-    {
-        .name              = "[SCAT] GW-286CT GEAR",
-        .internal_name     = "gw286ct",
-        .type              = MACHINE_TYPE_286,
-        .chipset           = MACHINE_CHIPSET_SCAT,
-        .init              = machine_at_gw286ct_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_286,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 20000000,
-            .max_bus     = 25000000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_AT,
-        .flags     = MACHINE_IDE,
-        .ram       = {
-            .min  = 512, /* crashes at POST code 00 with less */
-            .max  = 16384,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = KBC_VEN_CHIPS | 0x0000a600,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x000004f0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = &f82c710_device,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
-    /* Has IBM PS/2 Type 1 KBC firmware - that's actually a guess since we
-       do not currently have a picture of the motherboard.
-       In the code, we actually give it the AMI PS/2 controller. */
-    {
-        .name              = "[SCAT] GoldStar GDC-212M",
-        .internal_name     = "gdc212m",
-        .type              = MACHINE_TYPE_286,
-        .chipset           = MACHINE_CHIPSET_SCAT,
-        .init              = machine_at_gdc212m_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_286,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 12500000,
-            .max_bus     = 12500000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_PS2,
-        .flags     = MACHINE_IDE,
-        .ram       = {
-            .min  = 512, /* gets stuck at POST code 86 with less */
-            .max  = 4096,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = KBC_VEN_AMI | 0x00004600,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x00000cf0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
-    /* Has a VIA VT82C42N KBC. */
-    {
-        .name              = "[SCAT] Hyundai Solomon 286KP",
-        .internal_name     = "award286",
-        .type              = MACHINE_TYPE_286,
-        .chipset           = MACHINE_CHIPSET_SCAT,
-        .init              = machine_at_award286_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_286,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 12500000,
-            .max_bus     = 12500000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_AT,
-        .flags     = MACHINE_IDE,
-        .ram       = {
-            .min  = 640, /* misdetects the size and gets stuck during the memory test with less */
-            .max  = 8192,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = KBC_VEN_VIA | 0x00424600,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x000004f0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
-    /* Has a VIA VT82C42N KBC. */
-    {
-        .name              = "[SCAT] Hyundai Super-286TR",
-        .internal_name     = "super286tr",
-        .type              = MACHINE_TYPE_286,
-        .chipset           = MACHINE_CHIPSET_SCAT,
-        .init              = machine_at_super286tr_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_286,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 12500000,
-            .max_bus     = 12500000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_AT,
-        .flags     = MACHINE_FLAGS_NONE,
-        .ram       = {
-            .min  = 640, /* misdetects the size and gets stuck during the memory test with less */
-            .max  = 8192,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = KBC_VEN_VIA | 0x00424600,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x000004f0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
-    {
-        .name              = "[SCAT] ICL DRS M35/286",
-        .internal_name     = "drsm35286",
-        .type              = MACHINE_TYPE_286,
-        .chipset           = MACHINE_CHIPSET_SCAT,
-        .init              = machine_at_drsm35286_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_286,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 12500000,
-            .max_bus     = 12500000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_PS2,
-        .flags     = MACHINE_IDE | MACHINE_VIDEO, /* Machine has Super I/O: C&T F82C711 */
-        .ram       = {
-            .min  = 512, /* crashes at POST code 60 with less */
-            .max  = 5120,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = 0x00000000,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x000004f0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = &gd5401_onboard_device,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
-    /* Has IBM AT KBC firmware. */
-    {
-        .name              = "[SCAT] Samsung Deskmaster 286/12",
-        .internal_name     = "deskmaster286",
-        .type              = MACHINE_TYPE_286,
-        .chipset           = MACHINE_CHIPSET_SCAT,
-        .init              = machine_at_deskmaster286_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_286,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 12500000,
-            .max_bus     = 12500000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_PS2,
-        .flags     = MACHINE_IDE, /* Has internal video: C&T VGA 411 */
-        .ram       = {
-            .min  = 512, /* crashes and bootloops during POST with less */
-            .max  = 8192,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = KBC_VEN_AMI | 0x00004600,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x00000cf0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
-    /* Has a Samsung (SEC) V1.4 KBC firmware. */
-    /* TODO: Do kbc_at.c logging to see if the BIOS sends any proprietary commands. */
-    {
-        .name              = "[SCAT] Samsung SPC-4200P",
-        .internal_name     = "spc4200p",
-        .type              = MACHINE_TYPE_286,
-        .chipset           = MACHINE_CHIPSET_SCAT,
-        .init              = machine_at_spc4200p_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_286,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 12500000,
-            .max_bus     = 12500000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_PS2,
-        .flags     = MACHINE_IDE, /* Has internal video: C&T VGA 411 */
-        .ram       = {
-            .min  = 512, /* crashes and bootloops during POST with less */
-            .max  = 8192,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = KBC_VEN_AMI | 0x00004600,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x00000cf0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "Samsung SD620", "Samsung Aladdin 286", "" }
-    },
-    /* Most likely has a Samsung (SEC) V1.4 KBC firmware like the SPC-4200P above. */
-    {
-        .name              = "[SCAT] Samsung SPC-4216P",
-        .internal_name     = "spc4216p",
-        .type              = MACHINE_TYPE_286,
-        .chipset           = MACHINE_CHIPSET_SCAT,
-        .init              = machine_at_spc4216p_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_286,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 12500000,
-            .max_bus     = 12500000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_PS2,
-        .flags     = MACHINE_FLAGS_NONE,
-        .ram       = {
-            .min  = 512, /* crashes and bootloops during POST with less */
-            .max  = 5120,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = KBC_VEN_AMI | 0x00004600,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x00000cf0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
-    /* Most likely has a Samsung (SEC) V1.4 KBC firmware like the SPC-4200P above. */
-    {
-        .name              = "[SCAT] Samsung SPC-4620P",
-        .internal_name     = "spc4620p",
-        .type              = MACHINE_TYPE_286,
-        .chipset           = MACHINE_CHIPSET_SCAT,
-        .init              = machine_at_spc4620p_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_286,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 16000000,
-            .max_bus     = 16000000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_PS2,
-        .flags     = MACHINE_IDE | MACHINE_VIDEO,
-        .ram       = {
-            .min  = 512, /* crashes and bootloops during POST with less */
-            .max  = 8192,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = KBC_VEN_AMI | 0x00004600,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x00000cf0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = &ati28800k_spc4620p_device,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "Samsung Aladdin 286 Magic+", "" }
-    },
-    /* Has AMI '8' KBC firmware. */
-    {
-        .name              = "[SCAT] Senor Science Co. SCAT-286-003",
-        .internal_name     = "senorscat286",
-        .type              = MACHINE_TYPE_286,
-        .chipset           = MACHINE_CHIPSET_SCAT,
-        .init              = machine_at_senor_scat286_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_286,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 12500000,
-            .max_bus     = 12500000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_AT,
-        .flags     = MACHINE_IDE,
-        .ram       = {
-            .min  = 512, /* gets stuck at POST code 10 with less */
-            .max  = 8192,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = KBC_VEN_AMI | 0x00003800,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x000004f0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
     },
     /* 286 machines that utilize the MCA bus */
     /* Has IBM PS/2 Type 2 KBC firmware. */
@@ -5965,7 +5965,7 @@ const machine_t machines[] = {
     },
     /* Most likely has Phonenix KBC firmware. */
     {
-        .name              = "[ACC 2036] Packard Bell PB300",
+        .name              = "[ACC Micro 2036] Packard Bell PB300",
         .internal_name     = "pbl300sx",
         .type              = MACHINE_TYPE_386SX,
         .chipset           = MACHINE_CHIPSET_ACC_2036,
@@ -6254,11 +6254,301 @@ const machine_t machines[] = {
         .net_device               = NULL,
         .aliases                  = { "Acer 386SX25/N", "" }
     },
+    /* Uses Commodore (CBM) KBC firmware, to be implemented as identical to
+       the IBM PS/2 Type 1 KBC firmware unless evidence emerges of any
+       proprietary commands. */
+    {
+        .name              = "[C&T NEAT] Commodore SL386SX-16",
+        .internal_name     = "cmdsl386sx16",
+        .type              = MACHINE_TYPE_386SX,
+        .chipset           = MACHINE_CHIPSET_NEAT,
+        .init              = machine_at_cmdsl386sx16_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_386SX,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 16000000,
+            .max_bus     = 20000000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_PS2,
+        .flags     = MACHINE_IDE,
+        .ram       = {
+            .min  = 512,
+            .max  = 8192,
+            .step = 512
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = 0x00000000,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x00000cf0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "DTK PPM-1660C", "DTK PPM-2060C", "" }
+    },
+    /* Has IBM AT KBC firmware. */
+    {
+        .name              = "[C&T NEAT] DTK PM-1630C",
+        .internal_name     = "dtk386",
+        .type              = MACHINE_TYPE_386SX,
+        .chipset           = MACHINE_CHIPSET_NEAT,
+        .init              = machine_at_neat_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_386SX,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 16000000,
+            .max_bus     = 20000000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_AT,
+        .flags     = MACHINE_FLAGS_NONE,
+        .ram       = {
+            .min  = 512,
+            .max  = 8192,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = 0x00000000,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x000004f0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
+    /* Most likely has an Award keyboard controller. */
+    {
+        .name              = "[C&T NEAT] Micro Express Inc. 066-3.1-0889",
+        .internal_name     = "me386sx",
+        .type              = MACHINE_TYPE_386SX,
+        .chipset           = MACHINE_CHIPSET_NEAT,
+        .init              = machine_at_me386sx_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_386SX,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 16000000,
+            .max_bus     = 16000000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_AT,
+        .flags     = MACHINE_PS2_KBC,
+        .ram       = {
+            .min  = 512,
+            .max  = 12288,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = KBC_VEN_AWARD | 0x00424600,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x000004f0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
+    {
+        .name              = "[C&T NEAT] Philips P3345",
+        .internal_name     = "p3345",
+        .type              = MACHINE_TYPE_386SX,
+        .chipset           = MACHINE_CHIPSET_NEAT,
+        .init              = machine_at_p3345_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu = {
+            .package     = CPU_PKG_386SX,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 16000000,
+            .max_bus     = 16000000,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_AT,
+        .flags     = MACHINE_IDE,
+        .ram       = {
+            .min  = 512,
+            .max  = 8192,
+            .step = 128
+        },
+        .nvrmask                  = 127,
+	    .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        .kbc_params               = 0x00000000,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT_ZERO_DEFAULT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x000004f0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
+    {
+        .name              = "[C&T NEATsx] OKI if386AX30L",
+        .internal_name     = "if386sx",
+        .type              = MACHINE_TYPE_386SX,
+        .chipset           = MACHINE_CHIPSET_NEATSX,
+        .init              = machine_at_if386sx_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_386SX,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 16000000,
+            .max_bus     = 16000000, /* assumed */
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_AT,
+        .flags     = MACHINE_VIDEO_FIXED | MACHINE_KEYBOARD | MACHINE_KEYBOARD_JIS | MACHINE_AX,
+        .ram       = {
+            .min  = 1024,
+            .max  = 4096,
+            .step = 1024
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device,
+        /* The version number is a guess - we have no probe of this machine's controller. */
+        .kbc_params               = KBC_VEN_PHOENIX | 0x00010500,
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT_ZERO_DEFAULT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x000004f0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = &if386jega_device,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
+    /* Has an unknown AMI KBC firmware, I'm going to assume 'F' until a
+       photo or real hardware BIOS string is found. */
+    {
+        .name              = "[C&T SCATsx] Kaimei KMX-C-02",
+        .internal_name     = "kmxc02",
+        .type              = MACHINE_TYPE_386SX,
+        .chipset           = MACHINE_CHIPSET_SCAT_SX,
+        .init              = machine_at_kmxc02_init,
+        .p1_handler        = machine_generic_p1_handler,
+        .gpio_handler      = NULL,
+        .available_flag    = MACHINE_AVAILABLE,
+        .gpio_acpi_handler = NULL,
+        .cpu               = {
+            .package     = CPU_PKG_386SX,
+            .block       = CPU_BLOCK_NONE,
+            .min_bus     = 16000000,
+            .max_bus     = 25000000, /* assumed */
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi   = 0,
+            .max_multi   = 0
+        },
+        .bus_flags = MACHINE_AT,
+        .flags     = MACHINE_FLAGS_NONE,
+        .ram       = {
+            .min  = 512,
+            .max  = 16384,
+            .step = 512
+        },
+        .nvrmask                  = 127,
+        .jumpered_ecp_dma         = 0,
+        .default_jumpered_ecp_dma = -1,
+        .kbc_device               = &kbc_at_device, /* Possibly. */
+        .kbc_params               = KBC_VEN_AMI | 0x00004600, /* Guess. */
+        .nvr_device               = &nvr_at_device,
+        .nvr_params               = NVR_AT,
+        .sio_device               = NULL,
+        .sio_params               = 0x00000000,
+        .kbc_p1                   = 0x000004f0,
+        .gpio                     = 0xffffffff,
+        .gpio_acpi                = 0xffffffff,
+        .device                   = NULL,
+        .kbd_device               = NULL,
+        .fdc_device               = NULL,
+        .vid_device               = NULL,
+        .snd_device               = NULL,
+        .net_device               = NULL,
+        .aliases                  = { "" }
+    },
     /* Has an AMI KBC firmware, the only photo of this is too low resolution
        for me to read what's on the KBC chip, so I'm going to assume AMI 'F'
        based on the other known HT18 AMI BIOS strings. */
     {
-        .name              = "[HT18] Arche AMA-932J",
+        .name              = "[Headland HT18] Arche AMA-932J",
         .internal_name     = "ama932j",
         .type              = MACHINE_TYPE_386SX,
         .chipset           = MACHINE_CHIPSET_HT18,
@@ -6306,7 +6596,7 @@ const machine_t machines[] = {
     },
     /* Has unknown KBC firmware */
     {
-        .name              = "[HT18] Tandy 1000 RSX",
+        .name              = "[Headland HT18] Tandy 1000 RSX",
         .internal_name     = "tandy1000rsx",
         .type              = MACHINE_TYPE_386SX,
         .chipset           = MACHINE_CHIPSET_HT18,
@@ -6448,247 +6738,6 @@ const machine_t machines[] = {
         .net_device               = NULL,
         .aliases                  = { "Shuttle 386SX", "" }
     },
-    /* Uses Commodore (CBM) KBC firmware, to be implemented as identical to
-       the IBM PS/2 Type 1 KBC firmware unless evidence emerges of any
-       proprietary commands. */
-    {
-        .name              = "[NEAT] Commodore SL386SX-16",
-        .internal_name     = "cmdsl386sx16",
-        .type              = MACHINE_TYPE_386SX,
-        .chipset           = MACHINE_CHIPSET_NEAT,
-        .init              = machine_at_cmdsl386sx16_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_386SX,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 16000000,
-            .max_bus     = 20000000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_PS2,
-        .flags     = MACHINE_IDE,
-        .ram       = {
-            .min  = 512,
-            .max  = 8192,
-            .step = 512
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = 0x00000000,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x00000cf0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "DTK PPM-1660C", "DTK PPM-2060C", "" }
-    },
-    /* Has IBM AT KBC firmware. */
-    {
-        .name              = "[NEAT] DTK PM-1630C",
-        .internal_name     = "dtk386",
-        .type              = MACHINE_TYPE_386SX,
-        .chipset           = MACHINE_CHIPSET_NEAT,
-        .init              = machine_at_neat_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_386SX,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 16000000,
-            .max_bus     = 20000000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_AT,
-        .flags     = MACHINE_FLAGS_NONE,
-        .ram       = {
-            .min  = 512,
-            .max  = 8192,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = 0x00000000,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x000004f0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
-    /* Most likely has an Award keyboard controller. */
-    {
-        .name              = "[NEAT] Micro Express Inc. 066-3.1-0889",
-        .internal_name     = "me386sx",
-        .type              = MACHINE_TYPE_386SX,
-        .chipset           = MACHINE_CHIPSET_NEAT,
-        .init              = machine_at_me386sx_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_386SX,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 16000000,
-            .max_bus     = 16000000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_AT,
-        .flags     = MACHINE_PS2_KBC,
-        .ram       = {
-            .min  = 512,
-            .max  = 12288,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = KBC_VEN_AWARD | 0x00424600,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x000004f0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
-    {
-        .name              = "[NEAT] Philips P3345",
-        .internal_name     = "p3345",
-        .type              = MACHINE_TYPE_386SX,
-        .chipset           = MACHINE_CHIPSET_NEAT,
-        .init              = machine_at_p3345_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu = {
-            .package     = CPU_PKG_386SX,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 16000000,
-            .max_bus     = 16000000,
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_AT,
-        .flags     = MACHINE_IDE,
-        .ram       = {
-            .min  = 512,
-            .max  = 8192,
-            .step = 128
-        },
-        .nvrmask                  = 127,
-	    .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        .kbc_params               = 0x00000000,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT_ZERO_DEFAULT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x000004f0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
-    {
-        .name              = "[NEATsx] OKI if386AX30L",
-        .internal_name     = "if386sx",
-        .type              = MACHINE_TYPE_386SX,
-        .chipset           = MACHINE_CHIPSET_NEAT_SX,
-        .init              = machine_at_if386sx_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_386SX,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 16000000,
-            .max_bus     = 16000000, /* assumed */
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_AT,
-        .flags     = MACHINE_VIDEO_FIXED | MACHINE_KEYBOARD | MACHINE_KEYBOARD_JIS | MACHINE_AX,
-        .ram       = {
-            .min  = 1024,
-            .max  = 4096,
-            .step = 1024
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device,
-        /* The version number is a guess - we have no probe of this machine's controller. */
-        .kbc_params               = KBC_VEN_PHOENIX | 0x00010500,
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT_ZERO_DEFAULT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x000004f0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = &if386jega_device,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
     /* Has AMI KBC firmware of uknown revision, maybe '8'. */
     {
         .name              = "[OPTi 283] Silicon Valley Computer SVC386SX/P1",
@@ -6789,7 +6838,7 @@ const machine_t machines[] = {
        the IBM PS/2 Type 1 KBC firmware unless evidence emerges of any
        proprietary commands. */
     {
-        .name              = "[SCAMP] Commodore SL386SX-25",
+        .name              = "[VLSI SCAMP] Commodore SL386SX-25",
         .internal_name     = "cmdsl386sx25",
         .type              = MACHINE_TYPE_386SX,
         .chipset           = MACHINE_CHIPSET_VLSI_SCAMP,
@@ -6840,7 +6889,7 @@ const machine_t machines[] = {
        and ends in -8, so I'm going to assume that this, too, has an AMI '8'
        (AMI Keyboard BIOS Plus) KBC firmware. */
     {
-        .name              = "[SCAMP] DataExpert VLSI 311 386SX",
+        .name              = "[VLSI SCAMP] DataExpert VLSI 311 386SX",
         .internal_name     = "dataexpert386sx",
         .type              = MACHINE_TYPE_386SX,
         .chipset           = MACHINE_CHIPSET_VLSI_SCAMP,
@@ -6889,7 +6938,7 @@ const machine_t machines[] = {
     /* No proper pictures of the KBC exist, though it seems to have the IBM AT KBC
        firmware. */
     {
-        .name              = "[SCAMP] Dell System 333s/L",
+        .name              = "[VLSI SCAMP] Dell System 333s/L",
         .internal_name     = "dells333sl",
         .type              = MACHINE_TYPE_386SX,
         .chipset           = MACHINE_CHIPSET_VLSI_SCAMP,
@@ -6939,7 +6988,7 @@ const machine_t machines[] = {
     /* The only photo we have is too blurry to read the marking on the
        the keyboard controller, but it's possibly a Phoenix. */
     {
-        .name              = "[SCAMP] Samsung SPC-60xxP",
+        .name              = "[VLSI SCAMP] Samsung SPC-60xxP",
         .internal_name     = "spc6033p",
         .type              = MACHINE_TYPE_386SX,
         .chipset           = MACHINE_CHIPSET_VLSI_SCAMP,
@@ -6985,58 +7034,9 @@ const machine_t machines[] = {
         .net_device               = NULL,
         .aliases                  = { "Samsung Aladdin 386sx", "Samsung TOPMATE 386S/33", "Samsung SPC-6025P", "Samsung SPC-6033P", "" }
     },
-    /* Has an unknown AMI KBC firmware, I'm going to assume 'F' until a
-       photo or real hardware BIOS string is found. */
-    {
-        .name              = "[SCATsx] Kaimei KMX-C-02",
-        .internal_name     = "kmxc02",
-        .type              = MACHINE_TYPE_386SX,
-        .chipset           = MACHINE_CHIPSET_SCAT_SX,
-        .init              = machine_at_kmxc02_init,
-        .p1_handler        = machine_generic_p1_handler,
-        .gpio_handler      = NULL,
-        .available_flag    = MACHINE_AVAILABLE,
-        .gpio_acpi_handler = NULL,
-        .cpu               = {
-            .package     = CPU_PKG_386SX,
-            .block       = CPU_BLOCK_NONE,
-            .min_bus     = 16000000,
-            .max_bus     = 25000000, /* assumed */
-            .min_voltage = 0,
-            .max_voltage = 0,
-            .min_multi   = 0,
-            .max_multi   = 0
-        },
-        .bus_flags = MACHINE_AT,
-        .flags     = MACHINE_FLAGS_NONE,
-        .ram       = {
-            .min  = 512,
-            .max  = 16384,
-            .step = 512
-        },
-        .nvrmask                  = 127,
-        .jumpered_ecp_dma         = 0,
-        .default_jumpered_ecp_dma = -1,
-        .kbc_device               = &kbc_at_device, /* Possibly. */
-        .kbc_params               = KBC_VEN_AMI | 0x00004600, /* Guess. */
-        .nvr_device               = &nvr_at_device,
-        .nvr_params               = NVR_AT,
-        .sio_device               = NULL,
-        .sio_params               = 0x00000000,
-        .kbc_p1                   = 0x000004f0,
-        .gpio                     = 0xffffffff,
-        .gpio_acpi                = 0xffffffff,
-        .device                   = NULL,
-        .kbd_device               = NULL,
-        .fdc_device               = NULL,
-        .vid_device               = NULL,
-        .snd_device               = NULL,
-        .net_device               = NULL,
-        .aliases                  = { "" }
-    },
     /* Has Quadtel KBC firmware. */
     {
-        .name              = "[WD76C10] Amstrad MegaPC",
+        .name              = "[WDC WD76C10] Amstrad MegaPC",
         .internal_name     = "megapc",
         .type              = MACHINE_TYPE_386SX,
         .chipset           = MACHINE_CHIPSET_WD76C10,
@@ -7430,7 +7430,7 @@ const machine_t machines[] = {
        second/slave 8259 PIC exists on this hardware - it's a genuine XT platform underneath,
        just with a 386-class CPU bolted on via a daughtercard. */
     {
-        .name              = "[386DX] IBM XT (Inboard 386/PC)",
+        .name              = "[ISA] IBM XT (Inboard 386/PC)",
         .internal_name     = "ibmxt_inboard386",
         .type              = MACHINE_TYPE_386DX,
         .chipset           = MACHINE_CHIPSET_DISCRETE,
@@ -7681,7 +7681,7 @@ const machine_t machines[] = {
     /* Has a Jetkey V3, which we currently lack a probe of, but an
        old test by Carlos showed it as being 'F'. */
     {
-        .name              = "[ACC 2168] Juko AT046DX3",
+        .name              = "[ACC Micro 2168] Juko AT046DX3",
         .internal_name     = "acc386",
         .type              = MACHINE_TYPE_386DX,
         .chipset           = MACHINE_CHIPSET_ACC_2168,
@@ -8413,10 +8413,10 @@ const machine_t machines[] = {
     },
     /* Likely has an AMIKEY-2 'H' KBC.  */
     {
-        .name              = "[Symphony SL82C460] APC Predator I Plus",
+        .name              = "[Symphony Haydn II] APC Predator I Plus",
         .internal_name     = "pred1plus",
         .type              = MACHINE_TYPE_386DX_486,
-        .chipset           = MACHINE_CHIPSET_SYMPHONY_SL82C460,
+        .chipset           = MACHINE_CHIPSET_SYMPHONY_HAYDN_II,
         .init              = machine_at_pred1plus_init,
         .p1_handler        = machine_generic_p1_handler,
         .gpio_handler      = NULL,
@@ -8656,7 +8656,7 @@ const machine_t machines[] = {
     /* Has JetKey V5 KBC Firmware - we now have a photo of the board and its POST
        screen, so we can match JetKey V5 to 'F'. */
     {
-        .name              = "[CS4031] AMI 486 CS4031",
+        .name              = "[C&T CS4031] AMI 486 CS4031",
         .internal_name     = "cs4031",
         .type              = MACHINE_TYPE_SOCKET1,
         .chipset           = MACHINE_CHIPSET_CT_CS4031,
@@ -9282,10 +9282,10 @@ const machine_t machines[] = {
     },
     /* Has AMIKey F KBC firmware. */
     {
-        .name              = "[Symphony SL82C460] DTK PKM-0031Y",
+        .name              = "[Symphony Haydn II] DTK PKM-0031Y",
         .internal_name     = "dtk461",
         .type              = MACHINE_TYPE_SOCKET1,
-        .chipset           = MACHINE_CHIPSET_SYMPHONY_SL82C460,
+        .chipset           = MACHINE_CHIPSET_SYMPHONY_HAYDN_II,
         .init              = machine_at_dtk461_init,
         .p1_handler        = machine_generic_p1_handler,
         .gpio_handler      = NULL,
@@ -9382,7 +9382,7 @@ const machine_t machines[] = {
     },
     /* Has a VLSI VL82C113A SCAMP Combination I/O which holds the KBC. */
     {
-        .name              = "[VLSI 82C480] HP Vectra 486VL",
+        .name              = "[VLSI VL82C480] HP Vectra 486VL",
         .internal_name     = "vect486vl",
         .type              = MACHINE_TYPE_SOCKET1,
         .chipset           = MACHINE_CHIPSET_VLSI_VL82C480,
@@ -9431,7 +9431,7 @@ const machine_t machines[] = {
     },
     /* Has a standard IBM PS/2 KBC firmware or a clone thereof. */
     {
-        .name              = "[VLSI 82C481] Siemens-Nixdorf D824",
+        .name              = "[VLSI VL82C481] Siemens-Nixdorf D824",
         .internal_name     = "d824",
         .type              = MACHINE_TYPE_SOCKET1,
         .chipset           = MACHINE_CHIPSET_VLSI_VL82C481,
@@ -9480,7 +9480,7 @@ const machine_t machines[] = {
     },
     /* Has a VLSI VL82C113A SCAMP Combination I/O which holds the KBC. */
     {
-        .name              = "[VLSI 82C486] Olivetti PCS 44/C",
+        .name              = "[VLSI VL82C486] Olivetti PCS 44/C",
         .internal_name     = "pcs44c",
         .type              = MACHINE_TYPE_SOCKET1,
         .chipset           = MACHINE_CHIPSET_VLSI_VL82C486,
@@ -9529,7 +9529,7 @@ const machine_t machines[] = {
     },
     /* Has a VLSI VL82C113A SCAMP Combination I/O which holds the KBC. */
     {
-        .name              = "[VLSI 82C486] Tandy Sensation! (25-1650)",
+        .name              = "[VLSI VL82C486] Tandy Sensation! (25-1650)",
         .internal_name     = "sensation1",
         .type              = MACHINE_TYPE_SOCKET1,
         .chipset           = MACHINE_CHIPSET_VLSI_VL82C486,
@@ -9578,7 +9578,7 @@ const machine_t machines[] = {
     },
     /* Has a VLSI VL82C113A SCAMP Combination I/O which holds the KBC. */
     {
-        .name              = "[VLSI 82C486] Tulip 486 DC/DT",
+        .name              = "[VLSI VL82C486] Tulip 486 DC/DT",
         .internal_name     = "tuliptc38",
         .type              = MACHINE_TYPE_SOCKET1,
         .chipset           = MACHINE_CHIPSET_VLSI_VL82C486,
@@ -9774,7 +9774,7 @@ const machine_t machines[] = {
     /* Uses some variant of Phoenix MultiKey/42 as the BIOS sends keyboard controller
        command C7 (OR input byte with received data byte). */
     {
-        .name              = "[ACC 2168] Packard Bell PB410A",
+        .name              = "[ACC Micro 2168] Packard Bell PB410A",
         .internal_name     = "pb410a",
         .type              = MACHINE_TYPE_SOCKET2,
         .chipset           = MACHINE_CHIPSET_ACC_2168,
@@ -10015,10 +10015,10 @@ const machine_t machines[] = {
     },
     /* This has a standalone AMI Megakey 1993, which is type 'P'. */
     {
-        .name              = "[IMS 8848] Tekram G486IP",
+        .name              = "[IMS IMS8848] Tekram G486IP",
         .internal_name     = "g486ip",
         .type              = MACHINE_TYPE_SOCKET2,
-        .chipset           = MACHINE_CHIPSET_IMS_8848,
+        .chipset           = MACHINE_CHIPSET_IMS8848,
         .init              = machine_at_g486ip_init,
         .p1_handler        = machine_generic_p1_handler,
         .gpio_handler      = NULL,
@@ -10305,7 +10305,7 @@ const machine_t machines[] = {
     },
     /* Has a VLSI VL82C113A SCAMP Combination I/O which holds the KBC. */
     {
-        .name              = "[VLSI 82C480] Intel Classic R",
+        .name              = "[VLSI VL82C480] Intel Classic R",
         .internal_name     = "monsoon",
         .type              = MACHINE_TYPE_SOCKET2,
         .chipset           = MACHINE_CHIPSET_VLSI_VL82C480,
@@ -10354,7 +10354,7 @@ const machine_t machines[] = {
     },
     /* Has a VLSI VL82C113A SCAMP Combination I/O which holds the KBC. */
     {
-        .name              = "[VLSI 82C480] ZEOS Martin",
+        .name              = "[VLSI VL82C480] ZEOS Martin",
         .internal_name     = "martin",
         .type              = MACHINE_TYPE_SOCKET2,
         .chipset           = MACHINE_CHIPSET_VLSI_VL82C480,
@@ -10403,7 +10403,7 @@ const machine_t machines[] = {
     },
     /* Has a VLSI VL82C113A SCAMP Combination I/O which holds the KBC. */
     {
-        .name              = "[VLSI 82C486] Tandy Sensation! II (25-1651)",
+        .name              = "[VLSI VL82C486] Tandy Sensation! II (25-1651)",
         .internal_name     = "sensation2",
         .type              = MACHINE_TYPE_SOCKET2,
         .chipset           = MACHINE_CHIPSET_VLSI_VL82C486,
@@ -10456,7 +10456,7 @@ const machine_t machines[] = {
     /* Uses some variant of Phoenix MultiKey/42 as the BIOS sends keyboard controller
        command C7 (OR input byte with received data byte). */
     {
-        .name              = "[ACC 2168] Packard Bell PB430",
+        .name              = "[ACC Micro 2168] Packard Bell PB430",
         .internal_name     = "pb430",
         .type              = MACHINE_TYPE_SOCKET3,
         .chipset           = MACHINE_CHIPSET_ACC_2168,
@@ -11373,10 +11373,10 @@ const machine_t machines[] = {
     },
     /* Uses the AMIKey 'F' keyboard controller firmware. */
     {
-        .name              = "[Symphony SL82C460] Young Micro Systems VEGA VS486F-3VL",
+        .name              = "[Symphony Haydn II] Young Micro Systems VEGA VS486F-3VL",
         .internal_name     = "vs486f3vl",
         .type              = MACHINE_TYPE_SOCKET3,
-        .chipset           = MACHINE_CHIPSET_SIS_471,
+        .chipset           = MACHINE_CHIPSET_SYMPHONY_HAYDN_II,
         .init              = machine_at_vs486f3vl_init,
         .p1_handler        = machine_generic_p1_handler,
         .gpio_handler      = NULL,
@@ -12303,10 +12303,10 @@ const machine_t machines[] = {
     },
     /* This most likely has a standalone AMI Megakey 1993, which is type 'P', like the below Tekram board. */
     {
-        .name              = "[IMS 8848] J-Bond PCI400C-B",
+        .name              = "[IMS IMS8848] J-Bond PCI400C-B",
         .internal_name     = "pci400cb",
         .type              = MACHINE_TYPE_SOCKET3_PCI,
-        .chipset           = MACHINE_CHIPSET_IMS_8848,
+        .chipset           = MACHINE_CHIPSET_IMS8848,
         .init              = machine_at_pci400cb_init,
         .p1_handler        = machine_generic_p1_handler,
         .gpio_handler      = NULL,
