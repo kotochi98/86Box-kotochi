@@ -1,7 +1,7 @@
 /* Current todo's:
     1. Make KBC report correct revision 'F': DONE
     2. HDC doesn't work, investigate: DONE
-    3. Talk with obat, check if there is any work left
+    3. Talk with obat, check if there is any work left: DONE
     4. UMC SIO doesn't work, investigate
     5. Investigate the switcher (AI might be required)
 */
@@ -60,11 +60,23 @@ typedef struct ut85c50x_t {
     uint8_t    slot;
 
     uint8_t    pci_conf[3][256];
+    uint8_t    drb_temp[4];
 
+    smram_t   *smram;
     port_92_t *port_92;
 
     void *     log;
 } ut85c50x_t;
+
+static void
+ut85c50x_drb_recalc(ut85c50x_t *dev)
+{
+    spd_write_drbs(dev->drb_temp, 0x00, 0x03, 16);
+
+    dev->pci_conf[0][0xe0]  = (dev->drb_temp[0] & 0x0f) | ((dev->drb_temp[1] & 0x0f) << 4);
+    dev->pci_conf[0][0xe1]  = (dev->drb_temp[2] & 0x0f) | ((dev->drb_temp[3] & 0x0f) << 4);
+    dev->pci_conf[0][0xe2]  = (dev->pci_conf[0][0xe2] & 0xf8) | (!!(dev->drb_temp[1] & 0x10)) | (!!(dev->drb_temp[2] & 0x10) << 1) | (!!(dev->drb_temp[3] & 0x10) << 2);
+}
 
 static void
 ut85c50x_shadow_recalc(ut85c50x_t *dev)
@@ -75,12 +87,10 @@ ut85c50x_shadow_recalc(ut85c50x_t *dev)
     uint8_t  lo;
 
     for (uint8_t i = 0; i < 3; i++) {
-        
         lo = dev->pci_conf[0][0xe4 + i] & 0x0f;
         hi = dev->pci_conf[0][0xe4 + i] >> 4;
 
-        switch (i)
-        {
+        switch (i) {
             case 0:
             case 1:
                 can_read = (lo & 0x01) ? MEM_READ_INTERNAL : MEM_READ_EXTANY;
@@ -101,9 +111,28 @@ ut85c50x_shadow_recalc(ut85c50x_t *dev)
                 can_write = (hi & 0x02) ? MEM_WRITE_INTERNAL : MEM_WRITE_EXTANY;
                 mem_set_mem_state_both(0x000f0000, 0x10000, can_read | can_write);
                 break;
-
         }
     }
+
+    flushmmucache_nopc();
+}
+
+static void
+ut85c50x_smram_recalc(ut85c50x_t *dev)
+{
+    smram_disable_all();
+
+    int in_smm_wr  = !!(dev->pci_conf[0][0xe2] & 0x80);
+    int in_smm_rd  = !!(dev->pci_conf[0][0xe2] & 0x40);
+    int in_smm_all = in_smm_wr || in_smm_rd;
+    int in_normal  = in_smm_all && (dev->pci_conf[0][0xe2] & 0x20);
+    int en_flags   = (in_smm_wr ? MEM_WRITE_SMRAM : MEM_WRITE_EXTANY) | (in_smm_rd ? MEM_READ_SMRAM : MEM_READ_EXTANY);
+    int dis_flags  = MEM_WRITE_EXTANY | MEM_READ_EXTANY;
+
+    smram_enable(dev->smram, 0x000a0000, 0x000a0000, 0x00020000, in_normal, in_smm_all);
+
+    mem_set_mem_state(0x000a0000, 0x00020000, in_normal ? en_flags : dis_flags);
+    mem_set_mem_state_smm(0x000a0000, 0x00020000, in_smm_all ? en_flags : dis_flags);
 }
 
 static void
@@ -126,6 +155,7 @@ ut85c50x_write(int func, int addr, UNUSED(int len), uint8_t val, void *priv)
 {
     ut85c50x_t   *dev = (ut85c50x_t *) priv;
     uint8_t       irq;
+    uint8_t       valxor;
     const uint8_t irq_array[16] = { 0, 0, 0, 3, 4, 5, 6, 7, 0, 9, 10, 11, 12, 0, 14, 15 };
 
     ut85c50x_log(dev->log, "[%04X:%08X] UT85C50x: [W] (%02X, %02X) = %02X\n", CS, cpu_state.pc, func, addr, val);
@@ -167,7 +197,6 @@ ut85c50x_write(int func, int addr, UNUSED(int len), uint8_t val, void *priv)
                 cpu_update_waitstates();
                 break;
 
-            //figure out the bank stuff, is d1 d0 related to this?
             case 0xd1: /* DRAM Timing Control #1 */
                 dev->pci_conf[func][addr] = val;
                 break;
@@ -180,9 +209,14 @@ ut85c50x_write(int func, int addr, UNUSED(int len), uint8_t val, void *priv)
             case 0xd4:
             case 0xe0 ... 0xe1:
                 dev->pci_conf[func][addr] = val;
+                ut85c50x_drb_recalc(dev);
                 break;
             case 0xe2:
+                valxor = (dev->pci_conf[func][addr] ^ val) & 0xe0;
                 dev->pci_conf[func][addr] = val & 0xef;
+                ut85c50x_drb_recalc(dev);
+                if (valxor)
+                    ut85c50x_smram_recalc(dev);
                 break;
             case 0xe3: /* Video Memory Start Address */
                 dev->pci_conf[func][addr] = val;
@@ -196,7 +230,7 @@ ut85c50x_write(int func, int addr, UNUSED(int len), uint8_t val, void *priv)
             case 0xe7: /* Scratch Register */
                 dev->pci_conf[func][addr] = val;
                 break;
-            //where's smram?????
+            
             default:
                 if (addr > 0x3f)
                     ut85c50x_log(dev->log, "UT85C50x: Invalid or unknown reg [W] (%02X, %02X) = %02X\n", func, addr, val);
@@ -260,7 +294,7 @@ ut85c50x_write(int func, int addr, UNUSED(int len), uint8_t val, void *priv)
                 irq = irq_array[(val & 0xf0) >> 4];
                 pci_set_irq_routing(PCI_INTD, (irq != 0) ? irq : PCI_IRQ_DISABLED);
                 break;
-            //this area needs work idk anything about smi
+
             case 0x80: /* Idle Detector Control */
                 dev->pci_conf[func][addr] = (dev->pci_conf[func][0x83] & 0x80) ? (dev->pci_conf[func][addr] & 0x7f) | (val & 0x80) : val;
                 break;
@@ -390,6 +424,8 @@ ut85c50x_close(void *priv)
         dev->log = NULL;
     }
 
+    smram_del(dev->smram);
+
     free(dev);
 }
 
@@ -399,6 +435,8 @@ ut85c50x_init(UNUSED(const device_t *info))
     ut85c50x_t *dev = (ut85c50x_t *) calloc(1, sizeof(ut85c50x_t));
 
     dev->log = log_open("UT85C50x");
+
+    dev->smram = smram_add();
 
     pci_add_card(PCI_ADD_NORTHBRIDGE, ut85c50x_read, ut85c50x_write, dev, &dev->slot);
 
