@@ -1,10 +1,17 @@
-/* Current todo's:
-    1. Make KBC report correct revision 'F': DONE
-    2. HDC doesn't work, investigate: DONE
-    3. Talk with obat, check if there is any work left: DONE
-    4. UMC SIO FDC doesn't work, investigate
-*/
-
+/*
+ * 86Box    A hypervisor and IBM PC system emulator that specializes in
+ *          running old operating systems and software designed for IBM
+ *          PC systems and compatibles from 1981 through fairly recent
+ *          system designs based on the PCI bus.
+ *
+ *          This file is part of the 86Box distribution.
+ *
+ *          Utron UT85C501/UT85C502 chipset emulation module
+ *
+ * Authors: Umut Çağan Uçanok (cfwlr), <ucucanok@outlook.com.tr>
+ *
+ *          Copyright 2026 Umut Çağan Uçanok.
+ */
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -343,8 +350,7 @@ ut85c50x_write(int func, int addr, UNUSED(int len), uint8_t val, void *priv)
                 if (addr > 0x3f)
                     ut85c50x_log(dev->log, "UT85C50x: Invalid or unknown reg [W] (%02X, %02X) = %02X\n", func, addr, val);
                 break;
-        }
-    
+        }   
 }
 
 static uint8_t

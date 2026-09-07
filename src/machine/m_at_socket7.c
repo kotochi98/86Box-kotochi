@@ -2736,8 +2736,7 @@ machine_at_m558_init(const machine_t *model)
     pci_register_slot(0x0B, PCI_CARD_NORMAL,          1, 2, 3, 4);
     
     device_add(&ut85c50x_device);
-    device_add(&um8669f_device); //actually um8670f
-    //device_add_params(&fdc37c6xx_device, (void *) FDC37C665);
+    device_add_params(&um866x_device, (void *) UM8663BF); //Actual super I/O is UM8670F
     device_add(&sst_flash_29ee010_device);
     spd_register(SPD_TYPE_SDRAM, 0x3, 256);
 
