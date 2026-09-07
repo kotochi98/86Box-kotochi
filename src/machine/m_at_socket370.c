@@ -106,6 +106,9 @@ machine_at_awo671r_init(const machine_t *model)
         device_add(machine_get_vid_device(machine));
     spd_register(SPD_TYPE_SDRAM, 0x3, 256);
 
+    if (sound_card_current[0] == SOUND_INTERNAL)
+        machine_snd = device_add(machine_get_snd_device(machine));
+
     return ret;
 }
 
