@@ -139,7 +139,7 @@ ddma_reg_write(uint16_t addr, uint8_t val, void *priv)
             outb(dmab + (0x0e << dmas), val);
             break;
         case 0x0f:
-            outb(dmab + (0x0a << dmas), (val << 2) | (ch & 3));
+            outb(dmab + (0x0f << dmas), val);
             break;
 
         default:
