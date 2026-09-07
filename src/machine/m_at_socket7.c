@@ -2720,7 +2720,7 @@ machine_at_m558_init(const machine_t *model)
 {
     int ret;
 
-    ret = bios_load_linear("roms/machines/m558/m558smc.rom",
+    ret = bios_load_linear("roms/machines/m558/5581108S.ROM",
                            0x000e0000, 131072, 0);
 
     if (bios_only || !ret)
@@ -2736,8 +2736,8 @@ machine_at_m558_init(const machine_t *model)
     pci_register_slot(0x0B, PCI_CARD_NORMAL,          1, 2, 3, 4);
     
     device_add(&ut85c50x_device);
-    //device_add(&um8669f_device); //actually um8670f
-    device_add_params(&fdc37c6xx_device, (void *) FDC37C665);
+    device_add(&um8669f_device); //actually um8670f
+    //device_add_params(&fdc37c6xx_device, (void *) FDC37C665);
     device_add(&sst_flash_29ee010_device);
     spd_register(SPD_TYPE_SDRAM, 0x3, 256);
 

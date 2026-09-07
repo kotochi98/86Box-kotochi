@@ -2,11 +2,9 @@
     1. Make KBC report correct revision 'F': DONE
     2. HDC doesn't work, investigate: DONE
     3. Talk with obat, check if there is any work left: DONE
-    4. UMC SIO doesn't work, investigate
-    5. Investigate the switcher (AI might be required)
+    4. UMC SIO FDC doesn't work, investigate
 */
 
-#define ENABLE_UT85C50X_LOG 1
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
