@@ -1608,6 +1608,133 @@ machine_at_optiplexgn_init(const machine_t *model)
     return ret;
 }
 
+static const device_config_t p5txat_config[] = {
+    // clang-format off
+    {
+        .name           = "bios",
+        .description    = "BIOS Version",
+        .type           = CONFIG_BIOS,
+        .default_string = "p5txat",
+        .default_int    = 0,
+        .file_filter    = NULL,
+        .spinner        = { 0 },
+        .selection      = { { 0 } },
+        .bios           = {
+            {
+                .name          = "AwardBIOS v4.51PG - Revision 1.03",
+                .internal_name = "p5txat_103",
+                .bios_type     = BIOS_NORMAL,
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 131072,
+                .files         = { "roms/machines/p5txat/p5tx-at.bin", "" }
+            },
+            {
+                .name          = "AwardBIOS v4.51PG - Revision 1.04",
+                .internal_name = "p5txat_104",
+                .bios_type     = BIOS_NORMAL,
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 131072,
+                .files         = { "roms/machines/p5txat/Tx104.bin", "" }
+            },
+            {
+                .name          = "AwardBIOS v4.51PG - Revision 1.05",
+                .internal_name = "p5txat",
+                .bios_type     = BIOS_NORMAL,
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 131072,
+                .files         = { "roms/machines/p5txat/P5tx105.bin", "" }
+            },
+            {
+                .name          = "AwardBIOS v4.51PG - Evaluation ROM (11/21/97)",
+                .internal_name = "p5txat_eval97",
+                .bios_type     = BIOS_NORMAL,
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 131072,
+                .files         = { "roms/machines/p5txat/2a59ie39.bin", "" }
+            },
+            {
+                .name          = "AwardBIOS v4.51PG - Evaluation ROM (01/11/98)",
+                .internal_name = "p5txat_eval98",
+                .bios_type     = BIOS_NORMAL,
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 131072,
+                .files         = { "roms/machines/p5txat/test.bin", "" }
+            },
+            {
+                .name          = "MR BIOS V3.46 - Revision V09BB5AC",
+                .internal_name = "p5txat_mr346",
+                .bios_type     = BIOS_NORMAL,
+                .files_no      = 1,
+                .local         = 0,
+                .size          = 131072,
+                .files         = { "roms/machines/p5txat/V09BB5AC.BIO", "" }
+            },
+            { .files_no = 0 }
+        }
+    },
+    { .name = "", .description = "", .type = CONFIG_END }
+    // clang-format on
+};
+
+const device_t p5txat_device = {
+    .name          = "EFA P5TX-AT",
+    .internal_name = "p5txat",
+    .flags         = 0,
+    .local         = 0,
+    .init          = NULL,
+    .close         = NULL,
+    .reset         = NULL,
+    .available     = NULL,
+    .speed_changed = NULL,
+    .force_redraw  = NULL,
+    .config        = p5txat_config
+};
+
+int
+machine_at_p5txat_init(const machine_t *model)
+{
+    int         ret = 0;
+    const char *fn;
+
+    /* No ROMs available */
+    if (!device_available(model->device))
+        return ret;
+
+    device_context(model->device);
+    int is_eval = !strcmp(device_get_config_bios("bios"), "p5txat_eval97") || !strcmp(device_get_config_bios("bios"), "p5txat_eval98");
+    fn  = device_get_bios_file(machine_get_device(machine), device_get_config_bios("bios"), 0);
+    ret = bios_load_linear(fn, 0x000e0000, 131072, 0);
+    device_context_restore();
+
+    machine_at_common_init(model);
+
+    pci_init(PCI_CONFIG_TYPE_1);
+    pci_register_slot(0x00, PCI_CARD_NORTHBRIDGE, 0, 0, 0, 0);
+    pci_register_slot(0x11, PCI_CARD_NORMAL,      1, 2, 3, 4);
+    pci_register_slot(0x12, PCI_CARD_NORMAL,      2, 3, 4, 1);
+    pci_register_slot(0x13, PCI_CARD_NORMAL,      3, 4, 1, 2);
+    pci_register_slot(0x14, PCI_CARD_NORMAL,      4, 1, 2, 3);
+    /* The evaluation ROMs expect the southbridge at IRQ 1 instead of 7 */
+    if (is_eval)
+        pci_register_slot(0x01, PCI_CARD_SOUTHBRIDGE, 1, 2, 3, 4);
+    else
+        pci_register_slot(0x07, PCI_CARD_SOUTHBRIDGE, 1, 2, 3, 4);
+
+    device_add(&i430tx_device);
+    device_add(&piix4_device);
+    device_add_params(machine_get_kbc_device(machine), (void *) model->kbc_params);
+    device_add(&ali5113_device);
+    device_add(&winbond_flash_w29c010_device);
+    spd_register(SPD_TYPE_SDRAM, 0x3, 128);
+
+    return ret;
+}
+
 int
 machine_at_tomahawk_init(const machine_t *model)
 {
